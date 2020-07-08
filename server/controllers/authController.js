@@ -42,6 +42,7 @@ module.exports = {
         if (profile === null) {
             ctx.response.status = 403
             ctx.body = { status: false, error: 'login fail: google access token invalid' }
+            return
         }
         const service_token = googleOAuth.obtainServiceToken(profile)
         const user = await User.findOne({email: profile.email})
