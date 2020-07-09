@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <router-view name='nav'></router-view>
     <router-view></router-view>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->

@@ -28,19 +28,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isLogin = localStorage.getItem('token') === 'ImLogin';
-  if (isLogin) {
+  const clientoken = VueCookies.get('service_token');
+  if (clientoken) {
     next();
   } else {
-    if (to.path !== '/login') {
+    if (to.path !== '/login' || clientoken === undefined) {
       next('/login')
     }
     else
       next()
   }
 })
-
-
 
 Vue.config.productionTip = false
 

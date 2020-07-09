@@ -16,7 +16,6 @@ export default {
         try {
             const googleUser = await gauth.signIn()
             const access_token = googleUser.getAuthResponse().access_token
-            console.log(access_token)
             const loginResult = (await api().post('login', {
                 token: access_token,
                 type: 'google'
@@ -29,6 +28,13 @@ export default {
     },
 
     async signOut() {
-
+        try {
+            VueCookies.remove('service_token')
+            return true
+        }
+        catch (e) {
+            console.error(e)
+            return false
+        }
     }
 }

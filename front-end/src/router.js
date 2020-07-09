@@ -1,8 +1,9 @@
 import Login from '@/components/Login.vue';
 // import LandingPage from '@/pages/LandingPage.vue';
-import Home from '@/components/Home.vue';
+import HomePage from '@/pages/HomePage.vue';
 // import UserInfo from '@/components/UserInfo.vue';
 import Header from '@/components/Header.vue';
+// import HelloWorld from '@/components/HelloWorld.vue';
 
 export const routes = [
     {
@@ -12,7 +13,7 @@ export const routes = [
     {
         path: '/',
         components: {
-            default: Home,
+            default: HomePage,
             nav: Header
         }
     },

@@ -1,38 +1,34 @@
 <template>
   <b-container id="headBar">
-    <b-row cols="4">
+    <b-row cols="12">
       <b-col>
-        <b-button id="btn_headBar" block variant="outline-info" to="/">Music Sheet</b-button>
-      </b-col>
-      <b-col>
-        <b-button id="btn_headBar" block variant="outline-info" to="/TrainModel">Train Model</b-button>
-      </b-col>
-      <b-col>
-        <b-button
-          id="btn_headBar"
-          block
-          variant="outline-info"
-          href="https://TWcamel.github.io/tmp-audio_vs"
-        >Analyzer</b-button>
-      </b-col>
-      <b-col>
-        <b-button id="btn_headBar" block variant="outline-info" to="/userInfo">User Info</b-button>
-      </b-col>
-      <!-- <b-col>
         <b-button id="btn_headBar" block variant="outline-info" @click.prevent="logout">Logout</b-button>
-      </b-col>-->
+      </b-col>
     </b-row>
+    <Slide disableOutsideClick :closeOnNavigation="true">
+      <a id="home" href="#">
+        <span>Home</span>
+      </a>
+    </Slide>
   </b-container>
 </template>
 <script>
+import authService from "@/services/authService";
+import {Slide } from "vue-burger-menu";
 export default {
-  // methods: {
-  //   async logout() {
-  //     localStorage.removeItem("token");
-  //     this.$router.push("login");
-  //     // this.$data.remove('servece_token')
-  //   }
-  // }
+  methods: {
+    async logout() {
+      const logOut = await authService.signOut();
+      if (logOut) {
+        await this.$router.push("login");
+      } else {
+        alert("fail to log out!");
+      }
+    }
+  },
+  components: {
+    Slide
+  }
 };
 </script>
 
@@ -43,5 +39,8 @@ export default {
 }
 #btn_headBar {
   display: inline-table;
+}
+.vnb {
+  background: #fcd1d1;
 }
 </style>
