@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <router-view name='nav'></router-view>
-    <router-view></router-view>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <b-container>
+      <b-row class="mb-4" cols="12">
+        <router-view name="nav"></router-view>
+      </b-row>
+      <router-view></router-view>
+    </b-container>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    // HelloWorld
-  }
-}
+  name: "App",
+  components: {}
+};
 </script>
 
 <style>

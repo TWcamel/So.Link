@@ -13,22 +13,6 @@
 <script>
 import authService from "@/services/authService";
 export default {
-  name: "login-page",
-  data() {
-    return {
-      userName: "",
-      password: "",
-      hidePassword: true
-    };
-  },
-  computed: {
-    passwordType() {
-      return this.hidePassword ? "password" : "text";
-    },
-    passwordIcon() {
-      return this.hidePassword ? "fa-eye" : "fa-eye-slash";
-    }
-  },
   methods: {
     async signIn() {
       const success = await authService.signIn(this.$gAuth);

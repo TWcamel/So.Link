@@ -32,8 +32,8 @@ router.beforeEach((to, from, next) => {
   if (clientoken) {
     next();
   } else {
-    if (to.path !== '/login' || clientoken === undefined) {
-      next('/login')
+    if (to.path !== '/landingPage' || clientoken === undefined) {
+      next('/landingPage')
     }
     else
       next()
