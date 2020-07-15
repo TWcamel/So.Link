@@ -1,30 +1,43 @@
 <template>
-  <div id="app1">
-    <HelloWorld
+  <b-col cols="12" id="linkApp" class="mt-4">
+    <linkDetail
       v-for="link in links_raw"
       :key="link.id"
       :longLinks="link.longLink"
       :shortLinks="link.shortLink"
-    ></HelloWorld>
-  </div>
+    ></linkDetail>
+    <!-- TODO: -->
+    Track the total of clicks in real-time from your shortened URL.
+    Create other shortened URL.
+  </b-col>
 </template>
 
 <script>
 import Vue from "vue";
-const HelloWorld = Vue.component("showLinks", {
+const linkDetail = Vue.component("showLinks", {
   props: ["longLinks", "shortLinks"],
   template: `
-  <div>
-    <h1>Hello world</h1>
-    <div>{{ longLinks }}</div>
-    <div>{{ shortLinks }}</div>
+  <div style="margin:0 auto; padding:1rem 1.5rem">
+  <b-input-group prepend="Short URL" style="place-content: center;">
+    <b-form-input type="text" v-model="shortLinks" style="max-width:400px"/>  
+      <b-input-group-append>
+        <b-button variant="outline-primary" @click.prevent="copyFunction"> <b-icon-clipboard/> </b-button>
+      </b-input-group-append>
+  </b-input-group>
+    <div>Long URL: {{ longLinks }} </div>
+    <div>Short URL: {{ shortLinks }} </div>
   </div>
-  `
+  `,
+  methods: {
+    copyFunction() {
+      alert("This is a copy function!");
+    }
+  }
 });
 export default {
-  name: "app1",
+  name: "linkApp",
   components: {
-    HelloWorld
+    linkDetail
   },
   data() {
     return {
@@ -38,4 +51,8 @@ export default {
 </script>
 
 <style scoped>
+#linkApp {
+  background: #f9f9f9;
+  padding: 1%;
+}
 </style>

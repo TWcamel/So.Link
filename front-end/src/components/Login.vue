@@ -7,7 +7,7 @@
         bother to read.
       </p>
     </div>
-    <b-button variant="primary" @click="signIn()">Sign in with Google</b-button>
+    <b-button variant="primary" @click.prevent="signIn()">Sign in with Google</b-button>
   </div>
 </template>
 <script>

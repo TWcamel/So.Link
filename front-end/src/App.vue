@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container>
+    <b-container class="mt-4">
       <b-row class="mb-4" cols="12">
         <router-view name="nav"></router-view>
       </b-row>

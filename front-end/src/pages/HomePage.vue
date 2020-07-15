@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+  <b-row id="HomePage">
     <b-col cols="12">
       <span>LEADPAGES PRICING</span>
       <h1 class="mb-4">Try Leadpages Risk-Free Today</h1>
@@ -12,13 +12,16 @@
 </template>
 
 <script>
-import links from '@/components/ShortLink.vue'
+import links from "@/components/ShortLink.vue";
 export default {
-    components:{
-        links
-    }
+  components: {
+    links
+  }
 };
 </script>
 
 <style scoped>
+#HomePage {
+  /* background: #f9f9f9; */
+}
 </style>
