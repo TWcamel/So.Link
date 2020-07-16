@@ -3,8 +3,8 @@
     <link-detail
       v-for="link in links"
       :key="link.id"
-      :longLink="link.longLink"
-      :shortLink="link.shortLink"
+      :long_link="link.longLink"
+      :short_link="link.shortLink"
     ></link-detail>
     <!-- TODO: -->
     Track the total of clicks in real-time from your shortened URL.
