@@ -7,7 +7,7 @@ class Link {
         this.short_hash = shortHash
         this.long_link = longLink
         this.click_number = clickNumber
-        this.register_number = registerTime
+        this.register_time = registerTime
     }
 
     static async add (shortHash, longLink) {
