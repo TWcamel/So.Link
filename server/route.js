@@ -6,6 +6,7 @@ const userController = require('./controllers/userController.js')
 module.exports = (router) => {
     router.get('/:shortHash', linkController.goToLink)
     router.get('/api/user/profile', authController.verifyServiceToken, userController.getProfile)
-    router.post('/api/login', authController.login)
-    router.post('/api/link/register', linkController.register)
+    router.get('/api/link', authController.verifyServiceToken, linkController.getLinks)
+    router.post('/api/link', authController.verifyServiceToken, linkController.register)
+    router.post('/api/auth/login', authController.login)
 }

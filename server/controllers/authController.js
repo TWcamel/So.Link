@@ -6,15 +6,15 @@ const User = require('../models/user.js')
 module.exports = {
 
     async verifyServiceToken(ctx, next) {
-        const auth = ctx.headers.authorization
+        const authorization = ctx.headers.authorization
         
-        if (auth.substring(0, 7) !== 'Bearer ') {
+        if (!authorization || authorization.substring(0, 7) !== 'Bearer ') {
             ctx.response.status = 401
-            ctx.body = {status: false, error: 'token fromat should be "Bearer <jwt token>"'}
+            ctx.body = { message: 'token fromat should be "Bearer <jwt token>"' }
             return
         }
         
-        const serviceToken = auth.substring(7)
+        const serviceToken = authorization.substring(7)
         
         try {
             const userEmail = jwt.verify(serviceToken, config.tokenSecret).email
@@ -22,13 +22,13 @@ module.exports = {
         } catch (e) {
             if (e.name === 'JsonWebTokenError' && e.message === 'invalid token') {
                 ctx.response.status = 401
-                ctx.body = { status: false, error: 'UnAuthorized: invalid token' }
+                ctx.body = { message: 'UnAuthorized: invalid token' }
             } else if (e.name === 'TokenExpiredError' && e.message === 'jwt expired') {
                 ctx.response.status = 401
-                ctx.body = { status: false, error: 'UnAuthorized: the token is expired' }
+                ctx.body = { message: 'UnAuthorized: the token is expired' }
             } else {
                 ctx.response.status = 401
-                ctx.body = { status: false, error: `UnAuthorized: ${e.name}, ${e.message}` }
+                ctx.body = { message: `UnAuthorized: ${e.name}, ${e.message}` }
             }
             return
         }
@@ -36,12 +36,24 @@ module.exports = {
     },
 
     async login(ctx) {
-        const type  = ctx.request.body.type
+        const type = ctx.request.body.type
         const token = ctx.request.body.token
+        const tokenType = ctx.request.body.token_type
+        
+        if (!token) {
+            ctx.response.status = 400
+            ctx.body = { message: 'body parameter "token" should be given.' }
+            return
+        } else if (tokenType !== 'id_token' && tokenType !== 'access_token') {
+            ctx.response.status = 400
+            ctx.body = { message: 'body parameter "token_type" should be "id_token" or "access_token".' }
+            return
+        }
+        
         const profile = await googleOAuth.verifyGoogleToken(token)
         if (profile === null) {
             ctx.response.status = 403
-            ctx.body = { status: false, error: 'login fail: google access token invalid' }
+            ctx.body = { message: 'login fail: google access token invalid' }
             return
         }
         const service_token = googleOAuth.obtainServiceToken(profile)
