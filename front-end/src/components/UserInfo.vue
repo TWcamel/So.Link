@@ -1,15 +1,13 @@
 <template>
-  <b-card-group deck>
-    <b-card bg-variant="light" text-variant="black" header="發表過的短連結🔗" class="text-center">
-      <link-detail
-        v-for="link in links"
-        :key="link.id"
-        :longLink="link.longLink"
-        :shortLink="link.shortLink"
-        :messages="copyStatus"
-      ></link-detail>
-    </b-card>
-  </b-card-group>
+    <b-row>
+      <b-col cols="12" v-for="link in links" :key="link.id">
+        <link-detail
+          :longLink="link.longLink"
+          :shortLink="link.shortLink"
+          :messages="copyStatus"
+        ></link-detail>
+      </b-col>
+    </b-row>
 </template>
 
 <script>
