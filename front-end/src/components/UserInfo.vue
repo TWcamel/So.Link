@@ -10,8 +10,9 @@
 </template>
 
 <script>
+import config from '../config.js'
 import LinkDetail from '@/components/LinkDetail.vue'
-// import linkService from '@/services/linkService.js'
+import linkService from '@/services/linkService.js'
 
 export default {
     components: {
@@ -19,28 +20,16 @@ export default {
     },
 
     async mounted() {
-        // const links = await linkService.getLinks()
-        // this.links = links
+        const links = await linkService.getLinks()
+        links.forEach(link => {
+            link.short_link = `${config.linkBaseUrl}/${link.short_hash}`
+        })
+        this.links = links
     },
 
     data() {
         return {
-          links: [
-            {
-                _id: 1,
-                long_link: "https://gohaskfjhogle.com",
-                short_link: "https://google.com",
-                click_number: 2357,
-                register_time: new Date()
-            },
-            { 
-                _id: 2,
-                long_link: "https://gohaskfjhogle.com",
-                short_link: "https://google.com",
-                click_number: 7768,
-                register_time: new Date()
-            }
-          ],
+          links: [],
           copyStatus: "Tap to copy URL"
         }
     }

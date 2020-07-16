@@ -30,7 +30,7 @@
                         style="border: none; cursor: default; pointer-events: none;"/>
                 </b-input-group>
                 <b-input-group style="place-content: center;" class="mt-1">
-                    <b-form-input type="text" :placeholder="'創立時間: ' + link.register_time.toLocaleString()" 
+                    <b-form-input type="text" :placeholder="'創立時間: ' + link.register_time" 
                     style="border: none; cursor: default; pointer-events: none;"/>
                 </b-input-group>
             </b-col>
@@ -40,13 +40,19 @@
 </template>
 
 <script>
+// import config from '../config.js'
+
 export default {
     props: ["link", "messages"],
 
-    data() {
+    data () {
         return {
             // link: {}
         }
+    },
+
+    mounted () {
+
     },
 
     methods: {
