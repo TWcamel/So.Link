@@ -15,10 +15,13 @@ export default {
     async signIn(gauth) {
         try {
             const googleUser = await gauth.signIn()
-            const access_token = googleUser.getAuthResponse().access_token
-            const loginResult = (await api().post('login', {
+            const response = googleUser.getAuthResponse()
+            const access_token = response.access_token
+            const token_type = 'access_token'
+            const loginResult = (await api().post('auth/login', {
+                type: 'google',
                 token: access_token,
-                type: 'google'
+                token_type,
             })).data
             VueCookies.set('service_token', loginResult.service_token, Infinity);
             return true
