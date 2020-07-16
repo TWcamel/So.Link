@@ -3,6 +3,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import GAuth from 'vue-google-oauth2'
 import VueCookies from 'vue-cookies'
+import VueCliperboard from 'vue-clipboard2'
 
 const gauthoption = {
   clientId: '992404826895-b9uhfv728468lnqa1tne87drhb6svdfa.apps.googleusercontent.com',
@@ -10,11 +11,14 @@ const gauthoption = {
   prompt: 'select_account'
 }
 
+VueCliperboard.config.autoSetContainer = true
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(GAuth, gauthoption)
 Vue.use(VueCookies)
+Vue.use(VueCliperboard)
 
 import App from './App.vue'
 
