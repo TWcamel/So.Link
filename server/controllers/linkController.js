@@ -8,6 +8,13 @@ module.exports = {
     async register (ctx) {
         const userEmail = ctx.user
         const {long_link} = ctx.request.body
+
+        if (!long_link) {
+            ctx.response.status = 400
+            ctx.body = { message: 'body parameter "long_link" should be given' }
+            return
+        }
+
         const shortHash = linkShorter.short(long_link)
         const link = await Link.add(shortHash, long_link)
         await User.addLink(userEmail, link._id)
