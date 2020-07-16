@@ -12,7 +12,10 @@
 <script>
 export default {
   name: "App",
-  components: {}
+  components: {},
+  mounted() {
+    document.title = 'short link'
+  }
 };
 </script>
 

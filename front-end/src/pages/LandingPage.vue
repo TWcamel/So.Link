@@ -3,7 +3,7 @@
     <span id="logoLandingPage">
       <p>
         <img style="max-width:5%" src="@/assets/logo.png" />
-        LeadPages
+        
       </p>
     </span>
     <b-row cols="12" class="mb-4">
@@ -11,12 +11,11 @@
         <h1>Welcome to our website🐈</h1>
         <h1>Here, a handy short link tool is paparing for you</h1>
         <h3>Easily create your short link with simple steps</h3>
-        <b-button pill variant="primary">Let's Get Started</b-button>
+        <b-button class="mt-4" pill variant="primary" @click.prevent="signIn()">現在立即開始</b-button>
       </b-col>
     </b-row>
     <b-row cols="12">
       <b-col>
-        <Login></Login>
       </b-col>
     </b-row>
     <router-view></router-view>
@@ -24,13 +23,20 @@
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
+import authService from "@/services/authService";
+
 export default {
   name: "landingPage",
   components: {
-    Login
+
   },
-  methods: {}
+  methods: {
+    async signIn() {
+      const success = await authService.signIn(this.$gAuth);
+      if (success) await this.$router.push("/");
+      else alert("Sign in Failed! Plz try again");
+    }
+  }
 };
 </script>
 
