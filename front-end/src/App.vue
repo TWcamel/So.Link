@@ -20,6 +20,7 @@ export default {
 </script>
 
 <style>
+@import '~vue-awesome-notifications/dist/styles/style.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

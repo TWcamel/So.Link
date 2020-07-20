@@ -34,7 +34,7 @@ export default {
     async signIn() {
       const success = await authService.signIn(this.$gAuth);
       if (success) await this.$router.push("/");
-      else alert("Sign in Failed! Plz try again");
+      else this.$awn.alert("Sign in Failed! Plz try again");
     }
   }
 };

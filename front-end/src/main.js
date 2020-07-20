@@ -4,14 +4,20 @@ import VueRouter from 'vue-router'
 import GAuth from 'vue-google-oauth2'
 import VueCookies from 'vue-cookies'
 import VueCliperboard from 'vue-clipboard2'
+import VueAWN from "vue-awesome-notifications"
 
 const gauthoption = {
-  clientId: '442821260347-ha0gr92upimshl0qmkq2fvfho1uf1b3m.apps.googleusercontent.com',
+  clientId: '442821260347-p7um9gd1rui1toibkq1vccm7d8uq6ug0.apps.googleusercontent.com',
   scope: 'profile email',
   prompt: 'select_account'
 }
+const VueAWNoptions = {maxNotifications:5};
 
 VueCliperboard.config.autoSetContainer = true
+VueAWNoptions.labels = {
+  success: "Prosperity",
+  alert: "Failure",
+}
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -19,13 +25,14 @@ Vue.use(VueRouter)
 Vue.use(GAuth, gauthoption)
 Vue.use(VueCookies)
 Vue.use(VueCliperboard)
+Vue.use(VueAWN, VueAWNoptions)
 
 import App from './App.vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { routes } from './router'
-import store from './store'
+
 
 const router = new VueRouter({
   routes,
@@ -49,7 +56,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  store,
   render: h => h(App),
 }).$mount('#app')
 

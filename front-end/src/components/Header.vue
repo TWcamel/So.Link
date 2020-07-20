@@ -20,9 +20,7 @@ export default {
       const logOut = await authService.signOut();
       if (logOut) {
         await this.$router.push("landingPage");
-      } else {
-        alert("fail to log out😢");
-      }
+      } else this.$awm.alert("Fail to log out😢");
     },
     redirectToUserInfo() {
       if (this.$router.currentRoute.path !== "/UserInfo")

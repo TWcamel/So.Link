@@ -3,11 +3,11 @@
         <b-row>
             <b-col cols="12" sm="8">
                 <b-input-group prepend="Short URL" style="place-content: center;" class="mt-1">
-                    <b-form-input type="text" v-model="link.short_link" />
+                    <b-form-input type="text" v-model="link.short_link"/>
                     <b-input-group-append>
                         <b-button
                         variant="outline-primary"
-                        @click="copyText(1)"
+                        @click="copyText(1); "
                         v-b-tooltip.hover
                         :title="messages"
                         >
@@ -45,23 +45,32 @@ export default {
 
     data() {
         return {
-            // shortLinkCliperBoard: "",
         }
     },
 
     methods: {
         copyText(val) {
-            this.$copyText(this.link.long_link).then(
-                ele => {
-                    if (val===1) {
+            if (val === 1) {
+                this.$copyText(this.link.short_link).then(
+                    ele => {
+                        this.$awn.success(`📎 ${ele.text}`)
+                    },
+                    ele => {
+                        this.$awn.alert(`Fail to copy`)
                         console.log(ele);
                     }
-                },
-                ele => {
-                    alert("Fail to copy");
-                    console.log(ele);
-                }
-            )
+                )
+            } else if (val === 2) {
+                this.$copyText(this.link.long_link).then(
+                    ele => {
+                        this.$awn.success(`📎 ${ele.text}`)
+                    },
+                    ele => {
+                        this.$awn.alert(`Fail to copy`)
+                        console.log(ele);
+                    }
+                )
+            }
         }
     },
 };
