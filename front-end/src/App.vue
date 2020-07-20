@@ -37,6 +37,5 @@ export default {
 #headerBlock {
   margin: 0 auto;
   z-index: 1;
-  position: relative;
 }
 </style>
