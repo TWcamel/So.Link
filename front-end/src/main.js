@@ -6,7 +6,7 @@ import VueCookies from 'vue-cookies'
 import VueCliperboard from 'vue-clipboard2'
 
 const gauthoption = {
-  clientId: '992404826895-b9uhfv728468lnqa1tne87drhb6svdfa.apps.googleusercontent.com',
+  clientId: '442821260347-ha0gr92upimshl0qmkq2fvfho1uf1b3m.apps.googleusercontent.com',
   scope: 'profile email',
   prompt: 'select_account'
 }
@@ -25,6 +25,7 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { routes } from './router'
+import store from './store'
 
 const router = new VueRouter({
   routes,
@@ -48,6 +49,7 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 

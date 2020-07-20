@@ -50,11 +50,12 @@ export default {
     },
 
     methods: {
-        copyText() {
+        copyText(val) {
             this.$copyText(this.link.long_link).then(
                 ele => {
-                    ele.
-                    console.log(ele);
+                    if (val===1) {
+                        console.log(ele);
+                    }
                 },
                 ele => {
                     alert("Fail to copy");
