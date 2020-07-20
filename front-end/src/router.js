@@ -6,7 +6,7 @@ import ShortenLink from '@/components/ShortenLink.vue';
 
 export const routes = [
     {
-        path: '/landing-page',
+        path: '/landingpage',
         component: LandingPage,
         children: []
     },
@@ -18,14 +18,14 @@ export const routes = [
         },
     },
     {
-        path: '/user-info',
+        path: '/userinfo',
         components: {
             default: UserInfo,
             nav: Header,
         }
     },
     {
-        path: '/shorten-link',
+        path: '/shortenlink',
         components: {
             default: ShortenLink,
             nav: Header,

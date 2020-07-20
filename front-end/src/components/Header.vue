@@ -34,18 +34,18 @@ export default {
     async logout() {
       const logOut = await authService.signOut();
       if (logOut) {
-        await this.$router.push("landingPage");
+        await this.$router.push("landingpage");
       } else this.$awm.alert("Fail to log out😢");
     },
     redirectToUserInfo() {
-      if (this.$router.currentRoute.path !== "/") this.$router.push("UserInfo");
+      if (this.$router.currentRoute.path !== "/") this.$router.push("userinfo");
     },
     redirectToHome() {
       if (this.$router.currentRoute.path !== "/") this.$router.push("/");
     },
     redirectToShortenLink() {
       if (this.$router.currentRoute.path !== "/")
-        this.$router.push("shortenLink");
+        this.$router.push("shortenlink");
     }
   },
   components: {

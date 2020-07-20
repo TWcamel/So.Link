@@ -31,6 +31,8 @@ export default {
 <style scoped>
 #HomePage {
   background: var(--bgcolor-primary);
+  position: relative;
+  z-index: 0;
 }
 .hpgContainer-primary {
   background: var(--bgcolor-second);
