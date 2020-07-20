@@ -17,6 +17,7 @@ VueCliperboard.config.autoSetContainer = true
 VueAWNoptions.labels = {
   success: "Prosperity",
   alert: "Failure",
+  info: "This is info"
 }
 
 Vue.use(BootstrapVue)
