@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 import GAuth from 'vue-google-oauth2'
 import VueCookies from 'vue-cookies'
 import VueCliperboard from 'vue-clipboard2'
-import VueAWN from "vue-awesome-notifications"
+import VueAWN from 'vue-awesome-notifications'
+import VueScrollTo  from 'vue-scrollto';
 
 const gauthoption = {
   clientId: '442821260347-p7um9gd1rui1toibkq1vccm7d8uq6ug0.apps.googleusercontent.com',
@@ -27,6 +28,7 @@ Vue.use(GAuth, gauthoption)
 Vue.use(VueCookies)
 Vue.use(VueCliperboard)
 Vue.use(VueAWN, VueAWNoptions)
+Vue.use(VueScrollTo)
 
 import App from './App.vue'
 

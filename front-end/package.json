@@ -15,7 +15,8 @@
     "vue-awesome-notifications": "^3.1.1",
     "vue-burger-menu": "^2.0.5",
     "vue-cookies": "^1.7.0",
-    "vue-google-oauth2": "^1.5.5"
+    "vue-google-oauth2": "^1.5.5",
+    "vue-scrollto": "^2.18.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.0",

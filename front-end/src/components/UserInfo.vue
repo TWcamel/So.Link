@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+  <b-row >
     <b-col cols="12" v-for="link in links" :key="link.id">
       <link-detail :link="link" :messages="copyStatus"></link-detail>
       <!-- <link-detail :link="link" @on-result-change="chMsg('Taped')" :messages="copyStatus"></link-detail> -->

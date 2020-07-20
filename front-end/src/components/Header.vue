@@ -4,7 +4,7 @@
       <b-button block variant="light" @click.prevent="redirectToHome">Home</b-button>
     </span>
     <span>
-      <b-button block variant="light" @click.prevent="redirectToUserInfo">UserInfo</b-button>
+      <b-button block variant="light" @click.prevent="redirectToUserInfo" v-scroll-to="'#userInfo'">UserInfo</b-button>
     </span>
     <span>
       <b-button block variant="light" @click.prevent="logout">Logout</b-button>
@@ -23,7 +23,7 @@ export default {
       } else this.$awm.alert("Fail to log out😢");
     },
     redirectToUserInfo() {
-      if (this.$router.currentRoute.path !== "/UserInfo")
+      if (this.$router.currentRoute.path !== "/")
         this.$router.push("UserInfo");
     },
     redirectToHome() {
