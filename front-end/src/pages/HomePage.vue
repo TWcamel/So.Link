@@ -5,11 +5,11 @@
       <h5>Discover why more than 40,000 small business owners choose Leadpages.</h5>
       <h5>Select a plan to get started with your free 14-day trial.</h5>
     </b-col>
-    <b-col cols="12" class="hpgContainer-secon " id="userInfo">
+    <b-col cols="12" class="hpgContainer-secon "  id="shortenLink">
       <h1 class="mb-4 mt-4">Post Short Link</h1>
-      <short-link />
+      <shorten-link />
     </b-col>
-    <b-col cols="12" class="hpgContainer-primary">
+    <b-col cols="12" class="hpgContainer-primary" id="userInfo">
       <h1 class="mb-4 mt-4">User Info</h1>
       <user-info />
     </b-col>
@@ -18,11 +18,11 @@
 
 <script>
 import UserInfo from "@/components/UserInfo.vue";
-import ShortLink from "@/components/ShortLink.vue";
+import ShortenLink from "@/components/ShortenLink.vue";
 
 export default {
   components: {
-    ShortLink,
+    ShortenLink,
     UserInfo
   }
 };

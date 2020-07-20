@@ -2,10 +2,11 @@ import LandingPage from '@/pages/LandingPage.vue';
 import HomePage from '@/pages/HomePage.vue';
 import UserInfo from '@/components/UserInfo.vue';
 import Header from '@/components/Header.vue';
+import ShortenLink from '@/components/ShortenLink.vue';
 
 export const routes = [
     {
-        path: '/landingPage',
+        path: '/landing-page',
         component: LandingPage,
         children: []
     },
@@ -17,9 +18,16 @@ export const routes = [
         },
     },
     {
-        path: '/UserInfo',
+        path: '/user-info',
         components: {
             default: UserInfo,
+            nav: Header,
+        }
+    },
+    {
+        path: '/shorten-link',
+        components: {
+            default: ShortenLink,
             nav: Header,
         }
     },
