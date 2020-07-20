@@ -14,22 +14,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { routes } from './router'
 
-// const gauthoption = {
-//   clientId: '442821260347-p7um9gd1rui1toibkq1vccm7d8uq6ug0.apps.googleusercontent.com',
-//   scope: 'profile email',
-//   prompt: 'select_account'
-// }
-// const VueAWNoptions = {maxNotifications:3};
-
 const gauthoption = config.gauthoption;
-const VueAWNoptions = config.VueAWNoptions;
-VueCliperboard.config.autoSetContainer = true;
-// VueAWNoptions.labels = {
-//   success: "Prosperity",
-//   alert: "Failure",
-//   info: "This is info"
-// }
-
+const VueAWNoptions = config.vueAWNoptions;
+VueCliperboard.config.autoSetContainer = config.vueCliperboardConf;
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
