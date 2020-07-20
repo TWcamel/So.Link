@@ -24,9 +24,6 @@ export default {
   components: {},
   data() {
     return {
-      links: [
-        { id: 1, longLink: "https://googles.com", shortLink: "asdlsakjh" }
-      ],
       userLink: ""
     };
   },
