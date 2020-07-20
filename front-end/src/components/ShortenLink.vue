@@ -11,7 +11,7 @@
         <p>Track the total of clicks in real-time from your shortened URL.</p>
         <p>
           Create other
-          <a href="" @click.prevent="clearInputBlock">shortened URL.</a>
+          <a href @click.prevent="clearInputBlock">shortened URL.</a>
         </p>
       </h6>
     </b-input-group>
@@ -29,8 +29,14 @@ export default {
   },
   methods: {
     async regxLink(userLink) {
-      const link = await linkService.registerLink(userLink);
-      this.$awn.success(`${link}`);
+      try {
+        const link = await linkService.registerLink(userLink);
+        this.$awn.success(`${link}`);
+      } catch (e) {
+        if (e.response.status === 400) {
+          this.$awn.alert(`Please fill the shorten URL`);
+        } else this.$awn.alert(`${e}`);
+      }
     },
     clearInputBlock() {
       const len = this.userLink.toString().length;
