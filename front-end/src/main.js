@@ -11,7 +11,7 @@ const gauthoption = {
   scope: 'profile email',
   prompt: 'select_account'
 }
-const VueAWNoptions = {maxNotifications:5};
+const VueAWNoptions = {maxNotifications:3};
 
 VueCliperboard.config.autoSetContainer = true
 VueAWNoptions.labels = {

@@ -7,7 +7,7 @@
                     <b-input-group-append>
                         <b-button
                         variant="outline-primary"
-                        @click="copyText(1); "
+                        @click.prevent="copyText(1); "
                         v-b-tooltip.hover
                         :title="messages"
                         >
@@ -18,7 +18,11 @@
                 <b-input-group prepend="Long URL" style="place-content: center;" class="mt-1">
                     <b-form-input type="text" v-model="link.long_link"/>
                     <b-input-group-append>
-                        <b-button variant="outline-primary" @click.prevent="copyText(2)">
+                        <b-button 
+                        variant="outline-primary" 
+                        @click.prevent="copyText(2)"
+                        v-b-tooltip.hover
+                        :title="messages">
                         <b-icon-clipboard />
                         </b-button>
                     </b-input-group-append>

@@ -21,12 +21,17 @@ export default {
 
 <style>
 @import '~vue-awesome-notifications/dist/styles/style.css';
+:root{
+  --bgcolor-primary: #e9eaec;
+  --bgcolor-second: #f9f9f9;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 5%;
+  background-color: #ffffff;
 }
 </style>
