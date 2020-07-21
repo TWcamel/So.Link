@@ -9,8 +9,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import config from "../config.js";
-import LinkDetail from "@/components/LinkDetail.vue";
+import config from "../config.js"; import LinkDetail from "@/components/LinkDetail.vue";
 import linkService from "@/services/linkService.js";
 
 export default {
@@ -29,7 +28,7 @@ export default {
   data() {
     return {
       links: [],
-      copyStatus: "Tap to get URL"
+      copyStatus: "點擊以複製網址"
     };
   },
   methods: {

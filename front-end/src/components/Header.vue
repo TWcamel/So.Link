@@ -1,27 +1,27 @@
 <template>
-  <b-row class="mb-4 mt-4">
+  <b-row class="mb-4 mt-4" id="burgerBlock">
     <Slide disableOutsideClick :closeOnNavigation="true" noOverlay>
       <span>
-        <b-button block variant="light" @click.prevent="redirectToHome">Home</b-button>
+        <b-button block variant="light" @click.prevent="redirectURL('/')">首頁</b-button>
       </span>
       <span>
         <b-button
           block
           variant="light"
-          @click.prevent="redirectToShortenLink"
+          @click.prevent="redirectURL('shortenlink')"
           v-scroll-to="'#shortenLink'"
-        >Shorten Link</b-button>
+        >縮網址去!</b-button>
       </span>
       <span>
         <b-button
           block
           variant="light"
-          @click.prevent="redirectToUserInfo"
+          @click.prevent="redirectURL('userinfo')"
           v-scroll-to="'#userInfo'"
-        >User Info</b-button>
+        >使用者資訊</b-button>
       </span>
       <span>
-        <b-button block variant="light" @click.prevent="logout">Logout</b-button>
+        <b-button block variant="light" @click.prevent="logout">登出</b-button>
       </span>
     </Slide>
   </b-row>
@@ -35,18 +35,11 @@ export default {
       const logOut = await authService.signOut();
       if (logOut) {
         await this.$router.push("landingpage");
-      } else this.$awm.alert("Fail to log out😢");
+      } else this.$awm.alert("登入失敗😢");
     },
-    redirectToUserInfo() {
-      if (this.$router.currentRoute.path !== "/") this.$router.push("userinfo");
+    redirectURL(url){
+      if (this.$router.currentRoute.path !== "/") this.$router.push(`${url}`);
     },
-    redirectToHome() {
-      if (this.$router.currentRoute.path !== "/") this.$router.push("/");
-    },
-    redirectToShortenLink() {
-      if (this.$router.currentRoute.path !== "/")
-        this.$router.push("shortenlink");
-    }
   },
   components: {
     Slide

@@ -30,11 +30,20 @@ export default {
   methods: {
     async regxLink(userLink) {
       try {
-        const link = await linkService.registerLink(userLink);
-        this.$awn.success(`${link}`);
+        const vaildURL =
+          userLink.indexOf("https://") + userLink.indexOf("http://") === -1
+            ? true
+            : false;
+        if (vaildURL) {
+          const link = await linkService.registerLink(userLink);
+          this.$awn.success(`${link}`);
+        } else if (!vaildURL) {
+          this.$awn.alert(`您輸入的 ${userLink} 不是一個合法的網址 😢`);
+          if (userLink === "") this.$awn.info(` 請確認您已將網址填上哦 😉`);
+        }
       } catch (e) {
         if (e.response.status === 400) {
-          this.$awn.alert(`Please fill the shorten URL`);
+          this.$awn.alert(`您尚未填入網址哦 😉`);
         } else this.$awn.alert(`${e}`);
       }
     },
@@ -42,8 +51,8 @@ export default {
       const len = this.userLink.toString().length;
       if (len > 0) {
         this.userLink = "";
-        this.$awn.success(`Cleared! plz try to shorten URL again!`);
-      } else if (len === 0) this.$awn.info(`plz shorten URL first!`);
+        this.$awn.success(`您可以再次發佈短鏈接了 😊`);
+      } else if (len === 0) this.$awn.info(`您尚未填入網址哦 😉`);
     }
   }
 };
