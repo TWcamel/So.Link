@@ -11,6 +11,7 @@ const app = new Koa()
 const router = new Router()
 
 require('./route.js')(router)
+require('./middleware/cache.js')
 
 
 app.use(cors())

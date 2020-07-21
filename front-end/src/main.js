@@ -26,11 +26,12 @@ Vue.use(VueAWN, VueAWNoptions)
 Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false
-chkToken()
 
 new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+
+chkToken()
 
 

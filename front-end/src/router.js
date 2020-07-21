@@ -55,7 +55,7 @@ export const chkToken = router.beforeEach((to, from, next) => {
     if (clientoken) {
         next();
     } else {
-        if (to.path !== '/landingPage' && clientoken === undefined) {
+        if (to.path !== '/landingPage' && clientoken === null) {
             next('/landingPage')
         }
         else
