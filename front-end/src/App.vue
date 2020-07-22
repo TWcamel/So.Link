@@ -2,7 +2,12 @@
   <div id="app">
     <b-container class="mt-4">
       <b-row class="mb-4" cols="12" id="headerBlock">
+        <b-col cols="12">
         <router-view name="nav"></router-view>
+        </b-col>
+        <b-col cols="12">
+        <header-parallax/>
+        </b-col>
       </b-row>
       <router-view></router-view>
     </b-container>
@@ -10,9 +15,10 @@
 </template>
 
 <script>
+import HeaderParallax from '@/components/HeaderParallax.vue'
 export default {
   name: "App",
-  components: {},
+  components: {HeaderParallax},
   mounted() {
     document.title = "short link";
   }
@@ -36,6 +42,5 @@ export default {
 }
 #headerBlock {
   margin: 0 auto;
-  z-index: 1;
 }
 </style>

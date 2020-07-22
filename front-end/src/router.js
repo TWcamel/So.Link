@@ -5,7 +5,7 @@ import VueCookies from 'vue-cookies'
 import LandingPage from '@/pages/LandingPage.vue';
 import HomePage from '@/pages/HomePage.vue';
 import UserInfo from '@/components/UserInfo.vue';
-import Header from '@/components/Header.vue';
+import SideNavBar from '@/components/SideNavBar.vue';
 import ShortenLink from '@/components/ShortenLink.vue';
 
 Vue.use(Router)
@@ -25,21 +25,21 @@ export const router = new Router({
                 path: '/',
                 components: {
                     default: HomePage,
-                    nav: Header,
+                    nav: SideNavBar,
                 },
             },
             {
                 path: '/userinfo',
                 components: {
                     default: UserInfo,
-                    nav: Header,
+                    nav: SideNavBar,
                 }
             },
             {
                 path: '/shortenlink',
                 components: {
                     default: ShortenLink,
-                    nav: Header,
+                    nav: SideNavBar,
                 }
             },
             {
