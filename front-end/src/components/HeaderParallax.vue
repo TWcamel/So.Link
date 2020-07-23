@@ -4,7 +4,7 @@
     <div class="header-items parallax moto">
       <h1>Title Here</h1>
     </div>
-    <img class="header-items parallax" src="@/assets/girl_with_logo.png" alt />
+    <!-- <img class="header-items parallax" src="@/assets/girl_with_logo.png" alt /> -->
   </div>
 </template>
 <script>
@@ -27,10 +27,6 @@ export default {
       document
         .querySelector(".headerParallax")
         .style.setProperty("--y_value", `${window.scrollY}px`);
-
-      // console.log(
-      //   `in scroll handler now, and the Y value now is ${window.scrollY}px`
-      // );
     },
   },
 };
@@ -60,10 +56,10 @@ img {
   transform: translateY(calc(var(--y_value) * -0.8));
   z-index: 2;
 }
-.header-items:nth-child(3) {
+/* .header-items:nth-child(3) {
   transform: translateY(calc(var(--y_value) * -0.99));
   z-index: 3;
-}
+} */
 .parallax {
   position: fixed;
 }

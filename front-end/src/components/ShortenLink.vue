@@ -1,19 +1,21 @@
 <template>
   <b-col cols="12" id="linkApp" class="mt-4" style="text-align: -webkit-center">
     <b-input-group prepend="URL" style="max-width:80%;" class="mt-1">
-      <b-form-input type="text" v-model="userLink" :placeholder="'Put Your URL here'" />
+      <b-form-input type="text" v-model="userLink" :placeholder="'請輸入您的網址'" />
       <b-input-group-append>
-        <b-button variant="primary" @click.prevent="regxLink(userLink)" v-b-tooltip.hover>Shorten!</b-button>
+        <b-button
+          variant="primary"
+          @click.prevent="regxLink(userLink)"
+          v-b-tooltip.hover
+          id="shortenBtn"
+        >Shorten!</b-button>
       </b-input-group-append>
     </b-input-group>
     <b-input-group class="mt-4" style="place-content: center;">
-      <h6>
-        <p>Track the total of clicks in real-time from your shortened URL.</p>
-        <p>
-          Create other
-          <a href @click.prevent="clearInputBlock">shortened URL.</a>
-        </p>
-      </h6>
+      <h5>
+        立即創建另一個
+        <a href @click.prevent="clearInputBlock">短連結</a>
+      </h5>
     </b-input-group>
   </b-col>
 </template>
@@ -24,9 +26,10 @@ export default {
   components: {},
   data() {
     return {
-      userLink: ""
+      userLink: "",
     };
   },
+
   methods: {
     async regxLink(userLink) {
       try {
@@ -53,8 +56,8 @@ export default {
         this.userLink = "";
         this.$awn.success(`您可以再次發佈短鏈接了 😊`);
       } else if (len === 0) this.$awn.info(`您尚未填入網址哦 😉`);
-    }
-  }
+    },
+  },
 };
 </script>
 

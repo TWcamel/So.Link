@@ -46,12 +46,10 @@
 <script>
 export default {
     props: ["link", "messages"],
-
     data() {
         return {
         }
     },
-
     methods: {
         copyText(val) {
             if (val === 1) {
