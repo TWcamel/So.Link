@@ -2,6 +2,7 @@ const ObjectID = require('mongodb').ObjectID;
 const database = require('../database/database.js')
 const constants = require('../constants.js')
 
+
 class Link {
     constructor (shortHash, longLink, clickNumber, registerTime) {
         this.short_hash = shortHash

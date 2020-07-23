@@ -1,6 +1,7 @@
 const linkController = require('./controllers/linkController.js')
 const authController = require('./controllers/authController.js')
 const userController = require('./controllers/userController.js')
+const cacheMiddleware = require('./middleware/cache.js')
 
 
 module.exports = (router) => {
