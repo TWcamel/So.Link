@@ -2,8 +2,6 @@ const config = require('../config.js')
 const linkShorter = require('../libs/linkShorter.js')
 const Link = require('../models/link.js')
 const User = require('../models/user.js')
-// const userCache = require('../middleware/cache.js')
-
 
 module.exports = {
 
@@ -17,11 +15,11 @@ module.exports = {
             return
         }
 
-        const shortHash = linkShorter.short(long_link)
-        const link = await Link.add(shortHash, long_link)
-        await User.addLink(userEmail, link._id)
-        // await userCache.client.setex('name', 3600, 'saflh')
-        ctx.body = {short_link: `http://${config.linkDoamin}/${shortHash}`}
+        const link = await Link.add(long_link)
+        if (userEmail) {
+            await User.addLink(userEmail, link._id)
+        }
+        ctx.body = {short_link: `http://${config.linkDoamin}/${link.short_hash}`}
     },
 
     async getLinks (ctx) {
