@@ -7,11 +7,9 @@ export default {
         let url
         if (userIdentity === "user") url = 'link'
         else if (userIdentity === "guest") url = 'link/guest'
-        console.log(url)
         const result = (await api().post(`${url}`, {
             long_link: longLink
         })).data
-        console.table(result)
         return result.short_link
     },
 

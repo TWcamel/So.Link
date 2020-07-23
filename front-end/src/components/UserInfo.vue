@@ -17,12 +17,13 @@ export default {
   components: {
     LinkDetail,
   },
-  async created(){
+  async created() {
     await this.updateLinks();
-
   },
   async mounted() {
-    await document.getElementById("shortenBtn").addEventListener("click", this.updateLinks);
+    await document
+      .getElementById("shortenBtn")
+      .addEventListener("click", this.updateLinks);
   },
   async desyroyed() {
     await window.removeEventListener("click", this.updateLinks);
@@ -36,10 +37,12 @@ export default {
   methods: {
     async updateLinks() {
       const links = await linkService.getLinks();
-      links.forEach((link) => {
-        link.short_link = `${config.linkBaseUrl}/${link.short_hash}`;
-      });
-      this.links = links;
+      if (links.length !== 0) {
+        links.forEach((link) => {
+          link.short_link = `${config.linkBaseUrl}/${link.short_hash}`;
+        });
+        this.links = links;
+      }
     },
   },
 };

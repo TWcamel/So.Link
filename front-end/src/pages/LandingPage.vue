@@ -6,7 +6,7 @@
         id="title"
         :style="{opacity: titleOpacity, 'padding-top': '233px'}"
       >{{title}}</h1>
-      <b-container>
+      <b-container >
         <shorten-link/>
       </b-container>
       <h3 class="mt-4 mb-4" style="font-weight: bold;">縮網址，讓您縮爆網址</h3>
@@ -31,6 +31,7 @@ export default {
   },
   data() {
     return {
+      userURL:"",
       title: "MyHealth",
       allOpacity: 0,
       titleOpacity: 100,
