@@ -6,7 +6,7 @@ import VueCookies from 'vue-cookies'
 import VueCliperboard from 'vue-clipboard2'
 
 const gauthoption = {
-  clientId: '442821260347-ha0gr92upimshl0qmkq2fvfho1uf1b3m.apps.googleusercontent.com',
+  clientId: '442821260347-p7um9gd1rui1toibkq1vccm7d8uq6ug0.apps.googleusercontent.com',
   scope: 'profile email',
   prompt: 'select_account'
 }
