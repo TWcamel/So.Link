@@ -2,7 +2,7 @@
   <div class="headerParallax">
     <img class="header-items parallax" src="@/assets/texts_without_girl.png" alt />
     <div class="header-items parallax moto">
-      <h1>Title Here</h1>
+      <!-- <h1>Title Here</h1> -->
     </div>
     <!-- <img class="header-items parallax" src="@/assets/girl_with_logo.png" alt /> -->
   </div>

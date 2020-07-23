@@ -4,22 +4,23 @@ const constants = require('../constants.js')
 
 
 class Link {
-    constructor (shortHash, longLink, clickNumber, registerTime) {
+    constructor (shortHash, longLink, clickNumber, registerTime, sequence) {
         this.short_hash = shortHash
         this.long_link = longLink
         this.click_number = clickNumber
         this.register_time = registerTime
+        this.sequence = sequence
     }
 
-    static async add (shortHash, longLink) {
-        const link = new Link(shortHash, longLink, 0, new Date())
+    static async add (longLink) {
         const collection = await database.getCollection(constants.COLLECTION_LINK)
-        const linkExist = await Link.findOne(shortHash)
-        if (!linkExist) {
-            await collection.insertOne(link)
-            return link
-        }
-        return linkExist
+        const selectSequenceArray = await collection.find({}).sort({sequence: -1}).limit(1).toArray()
+        const maxSequence = (selectSequenceArray.length !== 0) ? selectSequenceArray[0].sequence : 0
+        let shortHash = Buffer.from(maxSequence.toString()).toString('base64')
+        shortHash = shortHash.trim().split(/\=+/)[0]
+        const link = new Link(shortHash, longLink, 0, new Date(), maxSequence + 1)
+        await collection.insertOne(link)
+        return link
     }
 
     static async addClick (linkId) {
