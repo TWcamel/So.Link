@@ -5,7 +5,7 @@
       <b-input-group-append>
         <b-button
           variant="primary"
-          @click.prevent="regxLink(userLink)"
+          @click.prevent="regxLink(userLink, userIdentity)"
           v-b-tooltip.hover
           id="shortenBtn"
         >Shorten!</b-button>
@@ -23,31 +23,36 @@
 <script>
 import linkService from "@/services/linkService.js";
 export default {
+  async mounted(){
+    const token = await linkService.getToken();
+    if (token) this.userIdentity="user"
+    else if (token===null) this.userIdentity="guest"
+    // console.log(this.userIdentity)
+  },
   components: {},
   data() {
     return {
       userLink: "",
+      userIdentity: "",
     };
   },
-
   methods: {
-    async regxLink(userLink) {
+    async regxLink(userLink, userIdentity) {
       try {
         const vaildURL =
           userLink.indexOf("https://") + userLink.indexOf("http://") === -1
             ? true
             : false;
         if (vaildURL) {
-          const link = await linkService.registerLink(userLink);
+          // console.log(userIdentity)
+          const link = await linkService.registerLink(userLink, userIdentity);
           this.$awn.success(`${link}`);
         } else if (!vaildURL) {
           this.$awn.alert(`您輸入的 ${userLink} 不是一個合法的網址 😢`);
           if (userLink === "") this.$awn.info(` 請確認您已將網址填上哦 😉`);
         }
       } catch (e) {
-        if (e.response.status === 400) {
-          this.$awn.alert(`您尚未填入網址哦 😉`);
-        } else this.$awn.alert(`${e}`);
+        this.$awn.alert(`${e}`);
       }
     },
     clearInputBlock() {

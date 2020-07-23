@@ -1,17 +1,26 @@
 import api from '@/services/api.js'
+import VueCookies from 'vue-cookies'
 
 export default {
 
-    async registerLink (longLink) {
-        const result = (await api().post('link', {
+    async registerLink(longLink, userIdentity) {
+        let url
+        if (userIdentity === "user") url = 'link'
+        else if (userIdentity === "guest") url = 'link/guest'
+        console.log(url)
+        const result = (await api().post(`${url}`, {
             long_link: longLink
         })).data
+        console.table(result)
         return result.short_link
     },
 
-    async getLinks () {
+    async getLinks() {
         const result = (await api().get('link')).data
-        console.log(result)
         return result
+    },
+
+    async getToken() {
+        return VueCookies.get('service_token');
     }
 }
