@@ -15,6 +15,7 @@ export default {
 
     async getLinks() {
         const result = (await api().get('link')).data
+        console.log(result)
         return result
     },
 

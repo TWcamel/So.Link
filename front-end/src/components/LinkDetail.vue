@@ -47,11 +47,11 @@
       </b-col>
       <b-col cols="12" sm="1" style="align-self: center" class="mt-4 mb-4">
         <b-button
-          id="removeBtn"
           variant="outline-warn"
           v-b-tooltip.hover
+          @click="deleteLink()"
           title="刪除這條短連結"
-          @click.prevent="deleteLink"
+          id="removeLinksBtn"
         >
           <b-icon icon="x-circle" scale="2" variant="danger" />
         </b-button>

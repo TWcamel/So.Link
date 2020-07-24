@@ -18,15 +18,8 @@ export default {
   },
   async created() {
     await this.updateLinks();
-    await document
-      .getElementById("shortenBtn")
-      .addEventListener("click", this.updateLinks);
-    await document
-      .getElementById("removeBtn")
-      .addEventListener("click", this.updateLinks);
-  },
-  async desyroyed() {
-    await window.removeEventListener("click", this.updateLinks);
+    document.getElementById("removeLinksBtn").onclick = await this.renderLinks;
+    document.getElementById("shortenBtn").onclick = await this.updateLinks;
   },
   data() {
     return {
@@ -43,6 +36,10 @@ export default {
         });
         this.links = links;
       }
+    },
+    async renderLinks() {
+      const links = await linkService.getLinks();
+      this.links = links;
     },
   },
 };
