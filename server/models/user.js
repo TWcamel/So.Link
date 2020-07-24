@@ -10,26 +10,36 @@ class User {
         this.link_ids = linkIds
     }
 
-    static async saveGoogle (googleProfile) {
+    static async saveGoogle(googleProfile) {
         const collection = await database.getCollection(constants.COLLECTION_USER)
         const user = new User(googleProfile.email, new Date(), 'google', [])
         await collection.insertOne(user)
         return user
     }
 
-    static async findOne ({email}) {
+    static async findOne({ email }) {
         const collection = await database.getCollection(constants.COLLECTION_USER)
-        const result = await collection.findOne({email})
+        const result = await collection.findOne({ email })
         return result
     }
 
-    static async addLink (userEmail, linkId) {
+    static async addLink(userEmail, linkId) {
         const collection = await database.getCollection(constants.COLLECTION_USER)
-        const result = await collection.find({email: userEmail, link_ids: ObjectID(linkId)}).toArray()
+        const result = await collection.find({ email: userEmail, link_ids: ObjectID(linkId) }).toArray()
         if (result.length === 0) {
             await collection.updateOne(
-                {email: userEmail},
-                {'$push': {link_ids: linkId}}
+                { email: userEmail },
+                { '$push': { link_ids: linkId } }
+            )
+        }
+    }
+
+    static async removeLink(userEmail, linkId) {
+        const collection = await database.getCollection(constants.COLLECTION_USER)
+        if (linkId && userEmail) {
+            await collection.updateOne(
+                { email: userEmail },
+                { '$pull': { link_ids: { '$in': [linkId] } } }
             )
         }
     }

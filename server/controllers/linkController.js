@@ -19,7 +19,6 @@ module.exports = {
         if (userEmail) {
             await User.addLink(userEmail, link._id)
         }
-        console.log()
         ctx.body = { short_link: `http://${config.linkDoamin}/${link.short_hash}` }
     },
 
@@ -38,5 +37,22 @@ module.exports = {
             ctx.redirect(link.long_link)
         }
         next()
+    },
+
+    async deleteLink(ctx) {
+        const { short_hash } = ctx.request.body
+        if (!short_hash) {
+            ctx.response.status = 400
+            ctx.body = { message: 'body parameter "short_Hash" should be given' }
+            return
+        }
+        const userEmail = ctx.user
+        const link = await Link.findOne(short_hash)
+        if (link) {
+            User.removeLink(userEmail, link._id)
+            Link.removeOne(link._id)
+            ctx.response.status = 200
+        }
     }
+
 }

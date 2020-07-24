@@ -1,8 +1,7 @@
 <template>
   <b-row>
     <b-col cols="12" v-for="link in links" :key="link.id">
-      <link-detail :link="link" :messages="copyStatus"></link-detail>
-      <!-- <link-detail :link="link" @on-result-change="chMsg('Taped')" :messages="copyStatus"></link-detail> -->
+      <link-detail :link="link" v-on:update:link="link" :messages="copyStatus"></link-detail>
     </b-col>
   </b-row>
 </template>
@@ -19,10 +18,11 @@ export default {
   },
   async created() {
     await this.updateLinks();
-  },
-  async mounted() {
     await document
       .getElementById("shortenBtn")
+      .addEventListener("click", this.updateLinks);
+    await document
+      .getElementById("removeBtn")
       .addEventListener("click", this.updateLinks);
   },
   async desyroyed() {

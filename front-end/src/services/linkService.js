@@ -20,5 +20,11 @@ export default {
 
     async getToken() {
         return VueCookies.get('service_token');
+    },
+
+    async deleteLink(shortLink) {
+        const result = (await api().post('link/delete', {
+            short_hash: shortLink
+        })).data
     }
 }

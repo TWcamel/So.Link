@@ -20,7 +20,6 @@ class Link {
         shortHash = shortHash.trim().split(/\=+/)[0]
         const link = new Link(shortHash, longLink, 0, new Date(), maxSequence + 1)
         await collection.insertOne(link)
-        console.warn(link)
         return link
     }
 
@@ -38,6 +37,13 @@ class Link {
         return result
     }
 
+    static async removeOne(linkId) {
+        const collection = await database.getCollection(constants.COLLECTION_LINK)
+        await collection.deleteOne(
+            { _id: ObjectID(linkId) },
+        )
+    }
+
     static async findMany(ids) {
         const collection = await database.getCollection(constants.COLLECTION_LINK)
         const result = collection.find({
@@ -48,6 +54,5 @@ class Link {
         return result
     }
 }
-
 
 module.exports = Link
