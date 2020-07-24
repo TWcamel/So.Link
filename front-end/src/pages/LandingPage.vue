@@ -2,7 +2,7 @@
   <div id="landing-page" :style="{opacity: allOpacity}">
     <div>
       <h1
-        class="mb-4 display-4"
+        class="mb-4"
         id="title"
         :style="{opacity: titleOpacity, 'padding-top': '233px'}"
       >{{title}}</h1>
@@ -10,24 +10,19 @@
         <shorten-link/>
       </b-container>
       <h3 class="mt-4 mb-4" style="font-weight: bold;">縮網址，讓您縮爆網址</h3>
-      <b-button
-        variant="primary"
-        class="mt-4"
-        id="startbutton"
-        :style="{opacity: startButtonOpacity, 'margin-bottom': '245px'}"
-        @click="signIn()"
-      >立即開始</b-button>
+      <loggin-in/>
     </div>
   </div>
 </template>
 
 <script>
-import authService from "@/services/authService";
 import ShortenLink from "@/components/ShortenLink";
+import LogginIn from "@/components/LogginIn";
 
 export default {
   components: {
     ShortenLink,
+    LogginIn
   },
   data() {
     return {
@@ -35,7 +30,6 @@ export default {
       title: "MyHealth",
       allOpacity: 0,
       titleOpacity: 100,
-      startButtonOpacity: 0,
     };
   },
   mounted() {
@@ -50,7 +44,6 @@ export default {
     this.$awn.asyncBlock(waitPageLoad, () => this.$awn.info("頁面載入完成 😄"));
     setTimeout(() => {
       this.allOpacity = 100;
-      this.isAllShow = true;
     }, 200);
     setTimeout(() => {
       this.titleOpacity = 0;
@@ -59,23 +52,14 @@ export default {
       this.titleOpacity = 100;
       this.title = "hen . ai . suo";
     }, 2400);
-    setTimeout(() => {
-      this.startButtonOpacity = 100;
-    }, 3700);
-  },
-  methods: {
-    async signIn() {
-      const success = await authService.signIn(this.$gAuth);
-      if (success) await this.$router.push("/");
-      else this.$awn.alert("登入失敗，請您再試一次");
-    },
-  },
+      },
+  
 };
 </script>
 
 <style scoped>
 #landing-page {
-  background-image: url("../assets/landing-background.jpeg");
+  background-image: url("../assets/landing-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

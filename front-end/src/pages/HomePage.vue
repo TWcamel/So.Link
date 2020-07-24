@@ -1,19 +1,17 @@
 <template>
   <b-container>
-    <b-row id="HomePage">
-      <b-col cols="12" class="HomePage-item">
-        <h1 class="mb-4 mt-4">Try Leadpages Risk-Free Today</h1>
-        <h2>-------------Animates Here!!!!-------------</h2>
-        <h5>Discover why more than 40,000 small business owners choose Leadpages.</h5>
-        <h5>Select a plan to get started with your free 14-day trial.</h5>
-      </b-col>
-      <b-col cols="12" id="shortenLink" class="HomePage-item">
-        <h1 class="mb-4 mt-4">發佈短鏈接</h1>
+    <b-row id="HomePage" :style="{opacity: allOpacity}">
+      <b-col cols="12">
+        <h1
+          class="mt-4 mb-4"
+          id="title"
+          :style="{opacity: titleOpacity, 'padding-top': '233px'}"
+        >{{title}}</h1>
         <shorten-link />
       </b-col>
       <b-col cols="12" id="userInfo" class="HomePage-item">
         <h1 class="mb-4 mt-4">使用者資訊</h1>
-        <user-info />
+        <user-info/>
       </b-col>
     </b-row>
   </b-container>
@@ -28,18 +26,73 @@ export default {
     ShortenLink,
     UserInfo,
   },
+  data() {
+    return {
+      title: "MyHealth",
+      allOpacity: 0,
+      titleOpacity: 100,
+      startButtonOpacity: 0,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.allOpacity = 100;
+    }, 200);
+    setTimeout(() => {
+      this.titleOpacity = 0;
+    }, 1400);
+    setTimeout(() => {
+      this.titleOpacity = 100;
+      this.title = "hen . ai . suo";
+    }, 2400);
+    setTimeout(() => {
+      this.startButtonOpacity = 100;
+    }, 3000);
+  },
+  methods: {
+    redirectURL(url) {
+      this.$router.push(`${url}`);
+    },
+  },
 };
 </script>
 
 <style scoped>
 #HomePage {
-  position: relative;
-  z-index: 0;
+  background-image: url("../assets/chain.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-position: center;
+  transition-property: opacity;
+  transition-duration: 1.2s;
+  transition-timing-function: ease-in-out;
+  color: white;
 }
 .HomePage-item:nth-child(odd) {
+  color: rgb(80, 78, 78);
   background: var(--bgcolor-primary);
 }
 .HomePage-item:nth-child(even) {
+  color: rgb(80, 78, 78);
   background: var(--bgcolor-second);
+}
+
+#HomePage::before {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#title {
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  font-weight: bold;
+}
+
+#startbutton {
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
 }
 </style>

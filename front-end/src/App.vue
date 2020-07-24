@@ -2,11 +2,8 @@
   <div id="app">
     <b-row cols="12" id="headerBlock">
       <b-col cols="12">
-        <router-view name="nav" />
+        <router-view name="nav"/>
       </b-col>
-      <!-- <b-col cols="12">
-        <header-parallax/>
-      </b-col>-->
     </b-row>
     <router-view />
   </div>

@@ -21,7 +21,7 @@
     </b-input-group>
     <b-input-group class="mt-4" style="place-content: center;">
       <h5>
-        立即創建另一個
+        清空以立即創建另一個
         <a href @click.prevent="clearInputBlock">短連結</a>
       </h5>
     </b-input-group>
