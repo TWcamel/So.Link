@@ -1,5 +1,5 @@
 <template>
-  <b-card class="mb-2">
+  <b-card class="mb-2" >
     <b-row>
       <b-col cols="12" sm="7">
         <b-input-group prepend="Short URL" style="place-content: center;" class="mt-1">
@@ -73,7 +73,7 @@ export default {
       if (val === 1) {
         this.$copyText(this.link.short_link).then(
           (ele) => {
-            console.log(this.link)
+            console.log(this.link);
             this.$awn.success(`📎 ${ele.text}`);
           },
           (ele) => {
@@ -98,8 +98,12 @@ export default {
         this.link.short_link.split("/").length - 1
       ];
       if (shortHash) {
-        await linkService.deleteLink(shortHash);
-        this.$awn.success(`${this.link.short_link} 已移除`)
+        const removeComponent = this.$emit("on-result-change", this.title)
+          ._vnode.tag;
+        if (removeComponent === "div") {
+          await linkService.deleteLink(shortHash);
+          this.$awn.success(`${this.link.short_link} 已移除`);
+        }
       }
     },
   },

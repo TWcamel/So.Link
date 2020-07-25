@@ -53,6 +53,8 @@ module.exports = {
             Link.removeOne(link._id)
             ctx.response.status = 200
         }
+        if (!link) ctx.body = { message: 'link has already been deleted' }
+
     }
 
 }

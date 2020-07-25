@@ -1,7 +1,8 @@
 <template>
   <b-row>
     <b-col cols="12" v-for="link in links" :key="link.id">
-      <link-detail :link="link" v-on:update:link="link" :messages="copyStatus"></link-detail>
+      <!-- <link-detail :link="link" v-on:update:link="link" :messages="copyStatus"></link-detail> -->
+      <link-detail :link="link" @on-result-change="updateLinks()" :messages="copyStatus"></link-detail>
     </b-col>
   </b-row>
 </template>
@@ -18,7 +19,6 @@ export default {
   },
   async created() {
     await this.updateLinks();
-    document.getElementById("removeLinksBtn").onclick = await this.renderLinks;
     document.getElementById("shortenBtn").onclick = await this.updateLinks;
   },
   data() {
@@ -36,10 +36,6 @@ export default {
         });
         this.links = links;
       }
-    },
-    async renderLinks() {
-      const links = await linkService.getLinks();
-      this.links = links;
     },
   },
 };
