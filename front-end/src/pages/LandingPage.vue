@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       userURL:"",
-      title: "MyHealth",
+      title: "縮網址",
       allOpacity: 0,
       titleOpacity: 100,
     };
@@ -50,7 +50,7 @@ export default {
     }, 1400);
     setTimeout(() => {
       this.titleOpacity = 100;
-      this.title = "hen . ai . suo";
+      this.title = "So . Link ";
     }, 2400);
       },
   

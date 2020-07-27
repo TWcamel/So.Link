@@ -13,6 +13,10 @@ export default {
             alert: "失敗，請您再試一次",
             info: "貼心小提醒",
         },
+        icons: {
+            prefix: "<i class='",
+            suffix: "'></i>",
+        },
         messages: { "async-block": "頁面載入中" },
     },
     vueCliperboardConf: true,

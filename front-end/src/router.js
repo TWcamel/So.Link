@@ -17,12 +17,12 @@ export const router = new Router({
     routes:
         [
             {
-                path: '/landingpage',
+                path: '/',
                 component: LandingPage,
-                children: []
+                children:[]
             },
             {
-                path: '/',
+                path: '/homepage',
                 components: {
                     default: HomePage,
                     nav: SideNavBar,
@@ -55,8 +55,8 @@ export const chkToken = router.beforeEach((to, from, next) => {
     if (clientoken) {
         next();
     } else {
-        if (to.path !== '/landingPage' && clientoken === null) {
-            next('/landingPage')
+        if (to.path !== '/' && clientoken === null) {
+            next('/')
         }
         else
             next()

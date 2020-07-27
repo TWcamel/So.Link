@@ -2,7 +2,7 @@
   <b-row class="mb-4 mt-4" id="burgerBlock" v-burgerPosition:[direction]="2">
     <Slide disableOutsideClick :closeOnNavigation="true" noOverlay>
       <span>
-        <b-button block variant="light" @click.prevent="redirectURL('/')">首頁</b-button>
+        <b-button block variant="light" @click.prevent="redirectURL('homepage')">首頁</b-button>
       </span>
       <span>
         <b-button
@@ -34,11 +34,11 @@ export default {
     async logout() {
       const logOut = await authService.signOut();
       if (logOut) {
-        await this.$router.push("landingpage");
+        await this.$router.push("/");
       } else this.$awm.alert("登入失敗😢");
     },
     redirectURL(url) {
-      if (this.$router.currentRoute.path !== "/") this.$router.push(`${url}`);
+      if (this.$router.currentRoute.path !== "homepage") this.$router.push(`${url}`);
     }
   },
   components: {

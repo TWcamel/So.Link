@@ -24,7 +24,6 @@ Vue.use(GAuth, gauthoption)
 Vue.use(VueCliperboard)
 Vue.use(VueAWN, VueAWNoptions)
 Vue.use(VueScrollTo)
-Vue.use(library)
 
 Vue.config.productionTip = false
 

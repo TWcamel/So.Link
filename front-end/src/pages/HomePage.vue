@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      title: "MyHealth",
+      title: "縮網址",
       allOpacity: 0,
       titleOpacity: 100,
       startButtonOpacity: 0,
@@ -43,16 +43,11 @@ export default {
     }, 1400);
     setTimeout(() => {
       this.titleOpacity = 100;
-      this.title = "hen . ai . suo";
+      this.title = "So . Link ";
     }, 2400);
     setTimeout(() => {
       this.startButtonOpacity = 100;
     }, 3000);
-  },
-  methods: {
-    redirectURL(url) {
-      this.$router.push(`${url}`);
-    },
   },
 };
 </script>

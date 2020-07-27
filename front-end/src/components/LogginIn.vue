@@ -25,7 +25,7 @@ export default {
   methods: {
     async signIn() {
       const success = await authService.signIn(this.$gAuth);
-      if (success) await this.$router.push("/");
+      if (success) await this.$router.push("homepage");
       else this.$awn.alert("登入失敗，請您再試一次");
     },
   },

@@ -10,10 +10,8 @@
 </template>
 
 <script>
-// import HeaderParallax from '@/components/HeaderParallax.vue'
 export default {
   name: "App",
-  // components: {HeaderParallax},
   mounted() {
     document.title = "short link";
   },
