@@ -26,7 +26,7 @@ A handy shorten URL tool is preparing for you to access any website with a tiny 
 * `$ git clone https://github.com/TWcamel/short-link.git`
 *  `$ cd front-end && npm i && npm run serve`
 *  `$ cd .. && cd server && npm i && npm run start`
-3. Create a mongo user
+3. Create a mongo user.
 4. Modify config file in `server` to your local mongoDB configuration.
 5. enjoy!😄
 
