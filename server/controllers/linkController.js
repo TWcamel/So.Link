@@ -19,7 +19,7 @@ module.exports = {
         if (userEmail) {
             await User.addLink(userEmail, link._id)
         }
-        ctx.body = { short_link: `http://${config.linkDoamin}/${link.short_hash}` }
+        ctx.body = { short_link: `http://${config.linkDoamin}${link.short_hash}` }
     },
 
     async getLinks(ctx) {
