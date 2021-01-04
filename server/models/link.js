@@ -19,7 +19,16 @@ class Link {
         let shortHash = Buffer.from(maxSequence.toString()).toString('base64')
         shortHash = shortHash.trim().split(/\=+/)[0]
         const link = new Link(shortHash, longLink, 0, new Date(), maxSequence + 1)
-        await collection.insertOne(link)
+        const session = await database.getTransacation()
+        try {
+            await session.withTransaction(async () => {
+                collection.insertOne(link, session)
+            }, database.getTransactionOptions)
+        } catch(e) {
+            console.error(e)
+        } finally {
+            await session.endSession();
+        }         
         return link
     }
 

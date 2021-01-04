@@ -11,6 +11,7 @@ class Database {
         this._client = undefined;
         this._db = undefined;
         this.getDB();
+        this._tranactionOptions = undefined;
     }
 
     async getClient() {
@@ -24,8 +25,8 @@ class Database {
                 this._db = await this._client.db(this._dbName);
                 return this._db;
             } catch (error) {
-                console.log(`connnected ${config.mongoUrl} error`);
-                console.log(`error: ${error}`)
+                console.error(`connnected ${config.mongoUrl} error`);
+                console.error(`error: ${error}`)
             }
         }
         return this._db;
@@ -43,6 +44,22 @@ class Database {
         await this._client.close();
         this._client = undefined;
         this._db = undefined;
+    }
+
+    async getTransacation() {
+        if (this._client === undefined || this.db === undefined) {
+            const sus = await this.getDB()
+        }
+        const session = this._client.startSession()
+        return session
+    }
+
+    getTransactionOptions() {
+        this._tranactionOptions = {
+            readPreference: 'primary',
+            readConcern: { level: 'local' },
+            writeConcern: { w: 'majority' }
+        };
     }
 }
 

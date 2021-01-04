@@ -9,8 +9,8 @@ module.exports = {
      */
     async verifyGoogleToken(accessToken) {
         try {
-            const result = await axios.get(`${config.googleValidateTokenUrl}?access_token=${accessToken}`);
-            return result.data;
+            const result = await axios.get(`${config.googleValidateTokenUrl}?access_token=${accessToken}`)
+            return result.data
         } catch (e) {
             return null
         }
