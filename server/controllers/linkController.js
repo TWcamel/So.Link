@@ -1,5 +1,5 @@
 const config = require('../config.js')
-const linkShorter = require('../libs/linkShorter.js')
+// const linkShorter = require('../libs/linkShorter.js')
 const Link = require('../models/link.js')
 const User = require('../models/user.js')
 

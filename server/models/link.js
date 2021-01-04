@@ -24,11 +24,11 @@ class Link {
             await session.withTransaction(async () => {
                 collection.insertOne(link, session)
             }, database.getTransactionOptions)
-        } catch(e) {
+        } catch (e) {
             console.error(e)
         } finally {
             await session.endSession();
-        }         
+        }
         return link
     }
 

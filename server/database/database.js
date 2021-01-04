@@ -21,7 +21,7 @@ class Database {
     async getDB() {
         if (this._client === undefined || this._db === undefined) {
             try {
-                this._client = await mongo.connect(config.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true});
+                this._client = await mongo.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
                 this._db = await this._client.db(this._dbName);
                 return this._db;
             } catch (error) {
