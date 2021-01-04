@@ -51,6 +51,7 @@ module.exports = {
         }
         
         const profile = await googleOAuth.verifyGoogleToken(token)
+        console.log(profile)
         if (profile === null) {
             ctx.response.status = 403
             ctx.body = { message: 'login fail: google access token invalid' }
