@@ -2,53 +2,41 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueCookies from 'vue-cookies'
 
-import LandingPage from '@/pages/LandingPage.vue';
-import HomePage from '@/pages/HomePage.vue';
-import UserInfo from '@/components/UserInfo.vue';
-import SideNavBar from '@/components/SideNavBar.vue';
-import ShortenLink from '@/components/ShortenLink.vue';
-
 Vue.use(Router)
 Vue.use(VueCookies)
+
+import MainPage from '@/pages/MainPage.vue';
+import LandingPage from '@/pages/LandingPage.vue';
 
 export const router = new Router({
     mode: 'history',
     base: __dirname,
-    routes:
-        [
-            {
-                path: '/',
-                component: LandingPage,
-                children:[]
-            },
-            {
-                path: '/homepage',
-                components: {
-                    default: HomePage,
-                    nav: SideNavBar,
+    routes: 
+    [
+        {
+            path: '/',
+            name: 'main-page',
+            component: MainPage,
+            children: [
+                {
+                    path: '/',
+                    name: 'landing-page',
+                    component: LandingPage,
                 },
-            },
-            {
-                path: '/userinfo',
-                components: {
-                    default: UserInfo,
-                    nav: SideNavBar,
-                }
-            },
-            {
-                path: '/shortenlink',
-                components: {
-                    default: ShortenLink,
-                    nav: SideNavBar,
-                }
-            },
-            {
-                path: '*',
-                redirect: '/'
-            }
-        ]
-
-});
+                // {
+                //     path: '/homepage',
+                //     name: 'home-page',
+                //     component: HomePage,
+                // },
+                // {
+                //     path: '/userinfo',
+                //     name: 'user-info',
+                //     component: UserInfo
+                // },
+            ]
+        }
+    ]
+})
 
 export const chkToken = router.beforeEach((to, from, next) => {
     const clientoken = VueCookies.get('service_token');
