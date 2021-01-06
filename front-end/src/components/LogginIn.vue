@@ -1,9 +1,8 @@
 <template>
     <vs-button
         type="relief"
-        class="mt-4"
-        id="startbutton"
-        :style="{ opacity: startButtonOpacity, 'margin-bottom': '245px' }"
+        id="loginBtn"
+        :style="{ opacity: startButtonOpacity }"
         @click="signIn()"
         >以Google登入以繼續</vs-button
     >
@@ -37,3 +36,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+/* #loginBtn {
+    margin: var(--blockAndBlock);
+} */
+</style>

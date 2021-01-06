@@ -2,29 +2,22 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import GAuth from 'vue-google-oauth2'
 import Vuesax from 'vuesax'
-// import VueCliperboard from 'vue-clipboard2'
-// import VueAWN from 'vue-awesome-notifications'
+import VueCliperboard from 'vue-clipboard2'
 // import VueScrollTo  from 'vue-scrollto';
 
 import config from '@/config.js';
 import 'vuesax/dist/vuesax.css'
 
 import App from './App.vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {router, chkToken } from './router'
 
 const gauthoption = config.gauthoption;
-// const VueAWNoptions = config.vueAWNoptions;
-// VueCliperboard.config.autoSetContainer = config.vueCliperboardConf;
+VueCliperboard.config.autoSetContainer = config.vueCliperboardConf;
 
-// Vue.use(BootstrapVue)
-// Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(GAuth, gauthoption)
 Vue.use(Vuesax)
-// Vue.use(VueCliperboard)
-// Vue.use(VueAWN, VueAWNoptions)
+Vue.use(VueCliperboard)
 // Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false

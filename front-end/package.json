@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.1",
     "vue-cookies": "^1.7.0",
     "vue-google-oauth2": "^1.5.5",
     "vue-material-design-icons": "^4.11.0",

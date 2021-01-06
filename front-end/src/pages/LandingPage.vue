@@ -1,40 +1,33 @@
 <template>
-    <div id="landing-page" :style="{ opacity: allOpacity }">
-        <vs-row>
-            <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-            >
-                <h1
-                    class="mb-4"
-                    id="title"
-                    :style="{ opacity: titleOpacity, 'padding-top': '233px' }"
-                >
+    <div :style="{ opacity: allOpacity }">
+        <vs-row id="landing-page-bg1">
+            <vs-col vs-justify="center" vs-align="center" id="titleBlock">
+                <h1 id="title" :style="{ opacity: titleOpacity }">
                     {{ title }}
                 </h1>
+                <br/>
+                <h3>在這裡，您可以完全控制自己的鏈接</h3>
+                <h3>Here you take full control of your links</h3>
             </vs-col>
             <vs-row>
                 <shorten-link />
             </vs-row>
-            <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-            >
-                <h3 class="mt-4 mb-4" style="font-weight: bold;">
-                    縮網址，讓您縮爆網址
+            <vs-col vs-justify="center" vs-align="center" id="loginBtn">
+                <h3 style="font-weight: bold;">
+                    So . Link 縮 網 址，讓您縮爆網址
                 </h3>
-            </vs-col>
-            <vs-col
-                vs-type="flex"
-                vs-justify="center"
-                vs-align="center"
-                vs-w="12"
-            >
                 <loggin-in />
+            </vs-col>
+            <vs-col vs-justify="center" vs-align="center">
+                <introduce />
+            </vs-col>
+        </vs-row>
+        <vs-row id="landing-page-bg2">
+            <vs-col vs-justify="center" vs-align="center" id="introBlock ">
+                <intro-card />
+            </vs-col>
+            <vs-col vs-justify="center" vs-align="center" id="introBlock ">
+                <intro-collapes />
             </vs-col>
         </vs-row>
     </div>
@@ -42,17 +35,23 @@
 
 <script>
 import ShortenLink from '@/components/ShortenLink'
+import Introduce from '@/components/Introduce'
+import IntroCard from '@/components/IntroCard'
+import IntroCollapes from '@/components/IntroCollapes'
 import LogginIn from '@/components/LogginIn'
 
 export default {
     components: {
         ShortenLink,
         LogginIn,
+        Introduce,
+        IntroCard,
+        IntroCollapes,
     },
     data() {
         return {
             userURL: '',
-            title: '縮網址',
+            title: '縮 網 址',
             allOpacity: 0,
             titleOpacity: 100,
         }
@@ -86,7 +85,44 @@ export default {
 </script>
 
 <style scoped>
-#landing-page {
+#title {
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+    font-weight: bold;
+}
+
+#titleBlock {
+    padding: var(--pageMiddle);
+}
+
+#loginBtn {
+    margin: var(--blockAndBlock);
+}
+
+#introBlock {
+    background: var(--blockWhiteBgColor);
+}
+
+#landing-page-bg1 {
+    background-image: url('../assets/landing-background2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: center;
+    transition-property: opacity;
+    transition-duration: 1.2s;
+    transition-timing-function: ease-in-out;
+    color: white;
+}
+
+#landing-page-bg1::before {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#landing-page-bg2 {
+    padding: var(--gridAndGrid);
     background-image: url('../assets/landing-background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -99,20 +135,7 @@ export default {
     color: white;
 }
 
-#landing-page::before {
+#landing-page-bg2::before {
     background: rgba(0, 0, 0, 0.3);
-}
-
-#title {
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
-    font-weight: bold;
-}
-
-#startbutton {
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-out;
 }
 </style>

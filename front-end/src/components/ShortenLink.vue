@@ -1,46 +1,44 @@
 <template>
-    <vs-row
-        id="linkText"
-        vs-type="flex"
-        vs-justify="center"
-        vs-align="center"
-        vs-w="12"
-    >
-        <vs-row vs-justify="center" vs-align="center">
+    <vs-row vs-type="flex" vs-justify="center" vs-align="center" vs-w="12" id="inputBox">
+        <vs-row vs-justify="center" vs-align="center" id="linkText">
             <vs-input
-                icon-no-border
                 type="text"
-                icon="link"
+                icon="http"
                 size="large"
+                loading
                 label-placeholder="請輸入您的網址"
+                v-model="userLink"
             />
             <vs-button
                 style="margin-top: 17px"
                 type="relief"
-                size="large"
                 @click.prevent="regxLink(userLink, userIdentity)"
-                >Primary</vs-button
             >
+                <span class="material-icons">
+                    post_add
+                </span>
+            </vs-button>
         </vs-row>
-        <vs-row vs-justify="center" vs-align="center">
+        <vs-row vs-justify="center" vs-align="center" id="linkText">
             <vs-input
-                icon-no-border
                 type="text"
                 icon="link"
                 size="large"
                 label-placeholder="您的短網址"
+                v-model="userShortSequence"
             />
             <vs-button
                 style="margin-top: 17px"
                 type="relief"
-                size="large"
                 @click.prevent="copyText"
-                >Primary</vs-button
+                ><span class="material-icons">
+                    content_paste
+                </span></vs-button
             >
         </vs-row>
         <h5 style="color: white">
-            清空以立即創建另一個
-            <a href @click.prevent="clearInputBlock">短連結</a>
+            清空以立即創建另一
+            <a href @click.prevent="clearInputBlock">短網址</a>
         </h5>
     </vs-row>
 </template>
@@ -51,9 +49,8 @@ export default {
     async mounted() {
         const token = await linkService.getToken()
         if (token) this.userIdentity = 'user'
-        else if (token === null) this.userIdentity = 'guest'
+        else this.userIdentity = 'guest'
     },
-    components: {},
     data() {
         return {
             userLink: '',
@@ -70,34 +67,40 @@ export default {
                     -1
                         ? true
                         : false
-                if (vaildURL) {
+                if (userLink === '') {
+                    this.$vs.notify({
+                        title: '錯誤（ Wrong ）',
+                        text: `您輸入的網址爲空，請重新輸入 🙂`,
+                        color: 'danger',
+                    })
+                    this.$vs.notify({
+                        title: '通知（ Info ）',
+                        text: `請確認您已將網址填上哦 😉`,
+                        color: 'primary',
+                    })
+                } else if (!vaildURL) {
+                    this.$vs.notify({
+                        title: '錯誤（ Wrong ）',
+                        text: `您輸入的 " ${userLink} " 不是一個合法的網址 😢 `,
+                        color: 'danger',
+                    })
+                    this.userLink = ''
+                    this.$vs.notify({
+                        title: '通知（ Info ）',
+                        text: `請重新輸入 😆`,
+                        color: 'primary',
+                    })
+                } else {
                     const link = await linkService.registerLink(
                         userLink,
                         userIdentity
                     )
                     this.userShortSequence = link
-                    // this.$awn.success(`${link}`)
                     this.$vs.notify({
-                        title: 'Success',
+                        title: '成功（ Success ）',
                         text: `${link}`,
                         color: 'success',
                     })
-                } else if (!vaildURL) {
-                    // this.$awn.alert(
-                    //     `您輸入的 ${userLink} 不是一個合法的網址 😢`
-                    // )
-                    this.$vs.notify({
-                        title: 'Danger',
-                        text: `您輸入的 ${userLink} 不是一個合法的網址 😢`,
-                        color: 'danger',
-                    })
-                    if (userLink === '')
-                        this.$vs.notify({
-                            title: 'Info',
-                            text: `請確認您已將網址填上哦 😉`,
-                            color: 'primary',
-                        })
-                    //     this.$awn.info(` 請確認您已將網址填上哦 😉`)
                 }
             } catch (e) {
                 this.$awn.alert(`${e}`)
@@ -108,33 +111,29 @@ export default {
             if (len > 0) {
                 this.userLink = ''
                 this.$vs.notify({
-                    title: 'Success',
+                    title: '成功（ Success ）',
                     text: `您可以再次發佈短鏈接了 😊`,
                     color: 'success',
                 })
-                // this.$awn.success(`您可以再次發佈短鏈接了 😊`)
             } else
                 this.$vs.notify({
-                    title: 'Info',
+                    title: '通知（ Info ）',
                     text: `您尚未填入網址哦 😉`,
                     color: 'primary',
                 })
-            // this.$awn.info(`您尚未填入網址哦 😉`)
         },
         copyText() {
             this.$copyText(this.userShortSequence).then(
                 ele => {
-                    // this.$awn.success(`📎 ${ele.text}`)
                     this.$vs.notify({
-                        title: 'Success',
+                        title: '成功（ Success ）',
                         text: `📎 ${ele.text}`,
                         color: 'success',
                     })
                 },
                 ele => {
-                    // this.$awn.alert(`Fail to copy`)
                     this.$vs.notify({
-                        title: 'Danger',
+                        title: '錯誤（ Wrong ）',
                         text: `無法複製 ${this.userLink} 😢 請通知作者`,
                         color: 'danger',
                     })
@@ -147,20 +146,38 @@ export default {
 </script>
 
 <style>
-
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-
-#linkApp {
-    /* background: #f9f9f9; */
-    /* padding: 1%; */
-    text-align: -webkit-center;
-}
-p {
-    text-align: center;
-}
 
 #linkText {
     color: black;
+    margin-bottom: var(--boxSize);
 }
 
+#inputBox {
+    background-color: var(--blue);
+    /* padding: 1em 0px 1em 0px; */
+    padding: var(--blockAndBlock);
+}
+
+.vs-input--placeholder {
+    /* font-size: 1em; */
+    margin-left: 1.3rem;
+    width: auto !important;
+}
+
+.vs-con-input-label {
+    width: 50%;
+}
+
+.vuesax-app-is-ltr .vs-input--input.hasIcon {
+    padding-left: 3.6em;
+}
+
+.vuesax-app-is-ltr .vs-input--icon {
+    border-right: 2px solid rgba(0,0,0,.1);
+}
+
+.vuesax-app-is-ltr .vs-input--icon {
+    padding-right: 0.5em;
+}
 </style>

@@ -7,35 +7,39 @@ Vue.use(VueCookies)
 
 import MainPage from '@/pages/MainPage.vue';
 import LandingPage from '@/pages/LandingPage.vue';
+import NavBar from '@/components/NavBar.vue';
 
 export const router = new Router({
     mode: 'history',
     base: __dirname,
-    routes: 
-    [
-        {
-            path: '/',
-            name: 'main-page',
-            component: MainPage,
-            children: [
-                {
-                    path: '/',
-                    name: 'landing-page',
-                    component: LandingPage,
+    routes:
+        [
+            {
+                path: '/',
+                name: 'main-page',
+                components: {
+                    default: MainPage,
+                    nav: NavBar,
                 },
-                // {
-                //     path: '/homepage',
-                //     name: 'home-page',
-                //     component: HomePage,
-                // },
-                // {
-                //     path: '/userinfo',
-                //     name: 'user-info',
-                //     component: UserInfo
-                // },
-            ]
-        }
-    ]
+                children: [
+                    {
+                        path: '/',
+                        name: 'landing-page',
+                        component: LandingPage,
+                    },
+                    // {
+                    //     path: '/homepage',
+                    //     name: 'home-page',
+                    //     component: HomePage,
+                    // },
+                    // {
+                    //     path: '/userinfo',
+                    //     name: 'user-info',
+                    //     component: UserInfo
+                    // },
+                ]
+            }
+        ]
 })
 
 export const chkToken = router.beforeEach((to, from, next) => {
