@@ -111,4 +111,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style>
+.vs-card--content {
+    padding: 15px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+</style>
