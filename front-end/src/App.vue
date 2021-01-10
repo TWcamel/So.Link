@@ -18,7 +18,7 @@ export default {
 
 <style>
 :root {
-    --blue:#19294bab;
+    --blue: #1a5b87;
     --boxSize: 0.8em;
     --pageMiddle: 5em;
     --white: #fff;
@@ -32,6 +32,8 @@ export default {
         var(--greyLight) 0%,
         var(--white) 100%
     );
+    --links-bgcolor-primary: #e9eaec;
+    --links-bgcolor-second: #f9f9f9;
 }
 
 #app {
@@ -41,6 +43,4 @@ export default {
     text-align: center;
     color: #2c3e50;
 }
-
-
 </style>

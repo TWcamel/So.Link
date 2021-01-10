@@ -1,17 +1,22 @@
 <template>
     <vs-row>
-        <vs-row id="userPage">
-        </vs-row>
+        <vs-row id="UserPage-block"> </vs-row>
         <vs-row>
             <shorten-link />
         </vs-row>
-        <vs-row>
-            <vs-col cols="12" v-for="link in links" :key="link.id">
+        <h2 id="UserPage-block">使用者資訊</h2>
+        <vs-row vs-justify="center" vs-align="center" class="UserPage-item">
+            <vs-col
+                style="width:80%;"
+                cols="12"
+                v-for="link in links"
+                :key="link.id"
+            >
                 <link-detail
                     :link="link"
                     @on-result-change="updateLinks()"
                     :messages="copyStatus"
-                ></link-detail>
+                />
             </vs-col>
         </vs-row>
     </vs-row>
@@ -48,7 +53,22 @@ export default {
 </script>
 
 <style scoped>
-#userPage {
-    padding-top: 10em;
+#UserPage-block {
+    padding: 2em 0em 2em 0em;
+    align-content: center;
+    width:100%;
 }
+
+.UserPage-item:nth-child(odd) {
+    color: rgb(80, 78, 78);
+    background: var(--links-bgcolor-primary);
+}
+.UserPage-item:nth-child(even) {
+    color: rgb(80, 78, 78);
+    background: var(--links-bgcolor-second);
+}
+
+/* #UserPage::before {
+    background: rgba(0, 0, 0, 0.3);
+} */
 </style>

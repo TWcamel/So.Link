@@ -1,12 +1,11 @@
 <template>
     <vs-row
-        vs-type="flex"
         vs-justify="center"
         vs-align="center"
         vs-w="12"
         id="inputBox"
     >
-        <vs-row vs-justify="center" vs-align="center" id="linkText">
+        <vs-row vs-justify="center" vs-align="flex-end" id="linkText">
             <vs-input
                 type="text"
                 icon="http"
@@ -16,7 +15,6 @@
                 v-model="userLink"
             />
             <vs-button
-                style="margin-top: 17px"
                 type="relief"
                 @click.prevent="regxLink(userLink, userIdentity)"
             >
@@ -25,7 +23,7 @@
                 </span>
             </vs-button>
         </vs-row>
-        <vs-row vs-justify="center" vs-align="center" id="linkText">
+        <vs-row vs-justify="center" vs-align="flex-end" id="linkText">
             <vs-input
                 type="text"
                 icon="link"
@@ -34,7 +32,6 @@
                 v-model="userShortSequence"
             />
             <vs-button
-                style="margin-top: 17px"
                 type="relief"
                 @click.prevent="copyText"
                 ><span class="material-icons">
@@ -184,5 +181,9 @@ export default {
 
 .vuesax-app-is-ltr .vs-input--icon {
     padding-right: 0.5em;
+}
+
+.vs-button-relief {
+    padding: 5px;
 }
 </style>

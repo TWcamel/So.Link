@@ -1,42 +1,43 @@
 <template>
-    <vs-row vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-row vs-justify="center" vs-align="center">
-            <vs-input
-                type="text"
-                icon="http"
-                size="large"
-                label-placeholder=" "
-                loading
-                v-model="link.short_link"
-            />
-            <vs-button
-                style="margin-top: 17px"
-                type="relief"
-                @click.prevent="regxLink(userLink, userIdentity)"
-            >
-                <span class="material-icons">
-                    post_add
-                </span>
-            </vs-button>
+    <vs-card >
+        <vs-row vs-w="12">
+            <vs-row vs-justify="center" vs-align="center">
+                <vs-input
+                    type="text"
+                    icon="link"
+                    size="large"
+                    label-placeholder=" "
+                    v-model="link.long_link"
+                />
+                <vs-button
+                    style="margin-top: 17px"
+                    type="relief"
+                    @click.prevent="copyText"
+                    ><span class="material-icons">
+                        content_paste
+                    </span></vs-button
+                >
+            </vs-row>
+            <vs-row vs-justify="center" vs-align="center">
+                <vs-input
+                    type="text"
+                    icon="http"
+                    size="large"
+                    label-placeholder=" "
+                    loading
+                    v-model="link.short_link"
+                />
+                <vs-button
+                    style="margin-top: 17px"
+                    type="relief"
+                    @click.prevent="copyText"
+                    ><span class="material-icons">
+                        content_paste
+                    </span></vs-button
+                >
+            </vs-row>
         </vs-row>
-        <vs-row vs-justify="center" vs-align="center">
-            <vs-input
-                type="text"
-                icon="link"
-                size="large"
-                label-placeholder="您的短網址"
-                v-model="userShortSequence"
-            />
-            <vs-button
-                style="margin-top: 17px"
-                type="relief"
-                @click.prevent="copyText"
-                ><span class="material-icons">
-                    content_paste
-                </span></vs-button
-            >
-        </vs-row>
-    </vs-row>
+    </vs-card>
 </template>
 
 <script>
