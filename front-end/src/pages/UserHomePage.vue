@@ -4,11 +4,10 @@
         <vs-row>
             <shorten-link />
         </vs-row>
-        <h2 id="UserPage-block">使用者資訊</h2>
         <vs-row vs-justify="center" vs-align="center" class="UserPage-item">
+            <h2 id="UserPage-block">使用者資訊</h2>
             <vs-col
-                style="width:80%;"
-                cols="12"
+                style="width:70%;"
                 v-for="link in links"
                 :key="link.id"
             >
@@ -56,7 +55,7 @@ export default {
 #UserPage-block {
     padding: 2em 0em 2em 0em;
     align-content: center;
-    width:100%;
+    width: 100%;
 }
 
 .UserPage-item:nth-child(odd) {

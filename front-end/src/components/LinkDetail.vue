@@ -1,18 +1,19 @@
 <template>
-    <vs-card >
+    <vs-card>
         <vs-row vs-w="12">
             <vs-row vs-justify="center" vs-align="center">
                 <vs-input
                     type="text"
-                    icon="link"
+                    icon="http"
                     size="large"
                     label-placeholder=" "
+                    loading
                     v-model="link.long_link"
                 />
                 <vs-button
                     style="margin-top: 17px"
                     type="relief"
-                    @click.prevent="copyText"
+                    @click.prevent="copyText(1)"
                     ><span class="material-icons">
                         content_paste
                     </span></vs-button
@@ -21,16 +22,15 @@
             <vs-row vs-justify="center" vs-align="center">
                 <vs-input
                     type="text"
-                    icon="http"
+                    icon="link"
                     size="large"
                     label-placeholder=" "
-                    loading
                     v-model="link.short_link"
                 />
                 <vs-button
                     style="margin-top: 17px"
                     type="relief"
-                    @click.prevent="copyText"
+                    @click.prevent="copyText(2)"
                     ><span class="material-icons">
                         content_paste
                     </span></vs-button
@@ -51,10 +51,10 @@ export default {
     methods: {
         copyText(val) {
             if (val === 1) {
-                this.$copyText(this.link.short_link).then(
+                this.$copyText(this.link.long_link).then(
                     ele => {
                         this.$vs.notify({
-                            title: '您的短網址（ Shortened URL ）',
+                            title: '複製長網址（ Copy Long URL ）',
                             text: `📎 ${ele.text}`,
                             color: 'success',
                         })
@@ -69,7 +69,7 @@ export default {
                     }
                 )
             } else if (val === 2) {
-                this.$copyText(this.link.long_link).then(
+                this.$copyText(this.link.short_link).then(
                     ele => {
                         this.$vs.notify({
                             title: '複製短網址（ Copy Shortened URL ）',
