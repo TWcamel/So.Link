@@ -1,10 +1,11 @@
 <template>
     <vs-row vs-type="flex" vs-justify="center" vs-align="center" vs-w="12">
-        <vs-row vs-justify="center" vs-align="center" >
+        <vs-row vs-justify="center" vs-align="center">
             <vs-input
                 type="text"
                 icon="http"
                 size="large"
+                label-placeholder=" "
                 loading
                 v-model="link.short_link"
             />
@@ -18,7 +19,7 @@
                 </span>
             </vs-button>
         </vs-row>
-        <vs-row vs-justify="center" vs-align="center" >
+        <vs-row vs-justify="center" vs-align="center">
             <vs-input
                 type="text"
                 icon="link"
