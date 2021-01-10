@@ -155,7 +155,6 @@ export default {
 
 #inputBox {
     background-color: var(--blue);
-    /* padding: 1em 0px 1em 0px; */
     padding: var(--blockAndBlock);
 }
 

@@ -56,7 +56,4 @@ export default {
     color: var(--blue);
 }
 
-li {
-    display: inline-block;
-}
 </style>

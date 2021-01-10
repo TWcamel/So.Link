@@ -66,7 +66,7 @@ export default {
             })
         )
         this.$vs.notify({
-            title: 'Success',
+            title: '成功（ Success ）',
             text: '頁面載入完成 😄',
             color: 'success',
         })

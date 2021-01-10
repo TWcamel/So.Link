@@ -6,6 +6,7 @@ Vue.use(Router)
 Vue.use(VueCookies)
 
 import MainPage from '@/pages/MainPage.vue';
+import UserHomePage from '@/pages/UserHomePage.vue';
 import LandingPage from '@/pages/LandingPage.vue';
 import NavBar from '@/components/NavBar.vue';
 
@@ -28,15 +29,25 @@ export const router = new Router({
                         component: LandingPage,
                     },
                     // {
-                    //     path: '/homepage',
-                    //     name: 'home-page',
-                    //     component: HomePage,
-                    // },
-                    // {
                     //     path: '/userinfo',
                     //     name: 'user-info',
                     //     component: UserInfo
                     // },
+                ]
+            },
+            {
+                path: '/user-home-page',
+                name: 'user-home-page',
+                components: {
+                    default: MainPage,
+                    nav: NavBar,
+                },
+                children: [
+                    {
+                        path: '/user-home-page',
+                        name: 'user-page',
+                        component: UserHomePage,
+                    },
                 ]
             }
         ]

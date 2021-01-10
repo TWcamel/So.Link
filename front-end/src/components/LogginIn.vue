@@ -25,10 +25,10 @@ export default {
     methods: {
         async signIn() {
             const success = await authService.signIn(this.$gAuth)
-            if (success) await this.$router.push('homepage')
+            if (success) await this.$router.push('user-home-page')
             else
                 this.$vs.notify({
-                    title: 'Danger',
+                    title: '錯誤（ Wrong ）',
                     text: '登入失敗，請您再試一次',
                     color: 'danger',
                 })
