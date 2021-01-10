@@ -1,5 +1,11 @@
 <template>
-    <vs-row vs-type="flex" vs-justify="center" vs-align="center" vs-w="12" id="inputBox">
+    <vs-row
+        vs-type="flex"
+        vs-justify="center"
+        vs-align="center"
+        vs-w="12"
+        id="inputBox"
+    >
         <vs-row vs-justify="center" vs-align="center" id="linkText">
             <vs-input
                 type="text"
@@ -97,7 +103,7 @@ export default {
                     )
                     this.userShortSequence = link
                     this.$vs.notify({
-                        title: '成功（ Success ）',
+                        title: '成功縮網址（ Success ）',
                         text: `${link}`,
                         color: 'success',
                     })
@@ -126,7 +132,7 @@ export default {
             this.$copyText(this.userShortSequence).then(
                 ele => {
                     this.$vs.notify({
-                        title: '成功（ Success ）',
+                        title: '成功複製（ Success ）',
                         text: `📎 ${ele.text}`,
                         color: 'success',
                     })
@@ -137,7 +143,7 @@ export default {
                         text: `無法複製 ${this.userLink} 😢 請通知作者`,
                         color: 'danger',
                     })
-                    console.log(ele)
+                    console.error(ele)
                 }
             )
         },
@@ -173,7 +179,7 @@ export default {
 }
 
 .vuesax-app-is-ltr .vs-input--icon {
-    border-right: 2px solid rgba(0,0,0,.1);
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .vuesax-app-is-ltr .vs-input--icon {

@@ -18,7 +18,7 @@ export default {
 
 <style>
 :root {
-    --blue:#19294b;
+    --blue:#19294bab;
     --boxSize: 0.8em;
     --pageMiddle: 5em;
     --white: #fff;

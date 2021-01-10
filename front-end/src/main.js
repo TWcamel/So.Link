@@ -9,6 +9,7 @@ import config from '@/config.js';
 import 'vuesax/dist/vuesax.css'
 
 import App from './App.vue'
+import store from './store'
 import {router, chkToken } from './router'
 
 const gauthoption = config.gauthoption;
