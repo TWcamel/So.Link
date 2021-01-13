@@ -1,7 +1,7 @@
 <template>
     <vs-card>
         <vs-row>
-            <vs-row vs-w="8" vs-justify="center">
+            <vs-row vs-justify="center">
                 <vs-input
                     type="text"
                     icon="http"
@@ -33,17 +33,11 @@
                     </span></vs-button
                 >
             </vs-row>
-            <vs-row vs-w="4">
-                <vs-row>
-                    <h2 id="LinkDetailText">
-                        點擊次數： {{ link.click_number }}
-                    </h2>
-                </vs-row>
-                <vs-row>
-                    <h2 id="LinkDetailText">
-                        創立時間： {{ link.register_time.toLocaleString() }}
-                    </h2>
-                </vs-row>
+            <vs-row vs-justify="center">
+                <h2 id="LinkDetailText">
+                    點擊次數： {{ link.click_number }} || 創立時間：
+                    {{ link.register_time.toLocaleString() }}
+                </h2>
             </vs-row>
         </vs-row>
     </vs-card>
@@ -129,7 +123,7 @@ export default {
 
 #LinkDetailText {
     margin-top: 17px;
-    margin-left: -2em;
-    color:var(--grey);
+    /* margin-left: -2em; */
+    color: var(--grey);
 }
 </style>
