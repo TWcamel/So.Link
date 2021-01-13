@@ -4,13 +4,18 @@
         <vs-row>
             <shorten-link :links="links" />
         </vs-row>
-        <vs-row vs-justify="space-around" vs-align="center" class="UserPage-item">
+        <vs-row
+            vs-justify="space-around"
+            vs-align="center"
+            class="UserPage-item"
+        >
             <h2 id="UserPage-block">使用者資訊</h2>
             <vs-row vs-w="5" v-for="link in links" :key="link.id">
                 <link-detail
                     :link="link"
                     @on-result-change="updateLinks()"
                     :messages="copyStatus"
+                    :links="links"
                 />
             </vs-row>
         </vs-row>
@@ -26,7 +31,7 @@ import config from '../config.js'
 export default {
     components: { LinkDetail, ShortenLink },
     data() {
-        return { links: [], copyStatus: '點擊以複製網址' }
+        return { links: [], copyStatus: '點擊以複製網址'}
     },
     methods: {
         async updateLinks() {

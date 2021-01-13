@@ -98,6 +98,8 @@ export default {
                         this.links.push({
                             long_link: userLink,
                             short_link: link,
+                            register_time: Date.now().toLocaleString(),
+                            click_number: 0,
                         })
                     }
                     this.$vs.notify({

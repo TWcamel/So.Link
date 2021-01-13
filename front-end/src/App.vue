@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import ModalWindow from "@vuesence/modal-window";
 export default {
     name: 'App',
     mounted() {

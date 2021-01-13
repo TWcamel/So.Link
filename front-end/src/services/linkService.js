@@ -2,14 +2,15 @@ import api from '@/services/api.js'
 import VueCookies from 'vue-cookies'
 
 export default {
-
     async registerLink(longLink, userIdentity) {
         let url
-        if (userIdentity === "user") url = 'link'
-        else if (userIdentity === "guest") url = 'link/guest'
-        const result = (await api().post(`${url}`, {
-            long_link: longLink
-        })).data
+        if (userIdentity === 'user') url = 'link'
+        else if (userIdentity === 'guest') url = 'link/guest'
+        const result = (
+            await api().post(`${url}`, {
+                long_link: longLink,
+            })
+        ).data
         return result.short_link
     },
 
@@ -19,12 +20,20 @@ export default {
     },
 
     async getToken() {
-        return VueCookies.get('service_token');
+        return VueCookies.get('service_token')
     },
 
     async deleteLink(shortLink) {
-        const result = (await api().post('link/delete', {
-            short_hash: shortLink
-        })).data
-    }
+        try {
+            const result = (
+                await api().post('link/delete', {
+                    short_hash: shortLink,
+                })
+            ).status
+            return result
+        } catch (e) {
+            console.error(e)
+            return false
+        }
+    },
 }

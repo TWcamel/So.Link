@@ -43,7 +43,7 @@ module.exports = {
         const { short_hash } = ctx.request.body
         if (!short_hash) {
             ctx.response.status = 400
-            ctx.body = { message: 'body parameter "short_Hash" should be given' }
+            ctx.body = { message: 'body parameter "short_hash" should be given' }
             return
         }
         const userEmail = ctx.user

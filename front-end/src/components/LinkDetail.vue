@@ -1,6 +1,6 @@
 <template>
     <vs-card>
-        <vs-row>
+        <vs-col vs-w="10">
             <vs-row vs-justify="center">
                 <vs-input
                     type="text"
@@ -13,7 +13,7 @@
                 <vs-button
                     style="margin-top: 17px"
                     type="relief"
-                    @click.prevent="copyText(1)"
+                    @click.prevent="copyText('copyLong')"
                     ><span class="material-icons">
                         content_paste
                     </span></vs-button
@@ -27,7 +27,7 @@
                 <vs-button
                     style="margin-top: 17px"
                     type="relief"
-                    @click.prevent="copyText(2)"
+                    @click.prevent="copyText('copyShort')"
                     ><span class="material-icons">
                         content_paste
                     </span></vs-button
@@ -39,21 +39,63 @@
                     {{ link.register_time.toLocaleString() }}
                 </h2>
             </vs-row>
-        </vs-row>
+        </vs-col>
+        <vs-col vs-w="2" vs-justify="center" id="LinkDeleteBtn">
+            <vs-button
+                radius
+                icon="delete_forever"
+                color="danger"
+                type="gradient"
+                @click="showModal = true"
+            />
+        </vs-col>
+        <modal-window
+            :visible="showModal"
+            :close-on-escape="true"
+            :close-on-outside-click="true"
+            :show-x-mark="true"
+            @close="showModal = false"
+        >
+            <vs-row vs-justify="center" id="modalContext">
+                <h2>確認刪除?</h2>
+            </vs-row>
+            <vs-divider color="danger">警告</vs-divider>
+
+            <vs-row vs-justify="center" id="modalContext">
+                <h4>這將會永久刪除您的短連結（不可復原），您確定要刪除嗎？</h4>
+            </vs-row>
+            <vs-row vs-justify="center" id="modalContext">
+                <vs-col vs-w="6">
+                    <vs-button type="border" @click.native="showModal = false"
+                        >取消</vs-button
+                    >
+                </vs-col>
+                <vs-col vs-w="6">
+                    <vs-button
+                        color="danger"
+                        type="border"
+                        @click="deleteLink(link.short_link)"
+                        >確定</vs-button
+                    >
+                </vs-col>
+            </vs-row>
+        </modal-window>
     </vs-card>
 </template>
 
 <script>
 import linkService from '@/services/linkService'
+import ModalWindow from '@vuesence/modal-window'
 
 export default {
-    props: ['link', 'messages'],
+    components: { ModalWindow },
+    props: ['links', 'link', 'messages'],
     data() {
-        return {}
+        return { showModal: false }
     },
     methods: {
         copyText(val) {
-            if (val === 1) {
+            if (val === 'copyLong') {
                 this.$copyText(this.link.long_link).then(
                     ele => {
                         this.$vs.notify({
@@ -71,7 +113,7 @@ export default {
                         console.error(ele)
                     }
                 )
-            } else if (val === 2) {
+            } else if (val === 'copyShort') {
                 this.$copyText(this.link.short_link).then(
                     ele => {
                         this.$vs.notify({
@@ -91,24 +133,29 @@ export default {
                 )
             }
         },
-        async deleteLink() {
-            const shortHash = this.link.short_link.split('/')[
-                this.link.short_link.split('/').length - 1
-            ]
-            if (shortHash) {
-                const removeComponent = this.$emit(
-                    'on-result-change',
-                    this.title
-                )._vnode.tag
-                if (removeComponent === 'div') {
-                    await linkService.deleteLink(shortHash)
-                    this.$vs.notify({
-                        title: '移除（ Delete URL ）',
-                        text: `${this.link.short_link} 已移除`,
-                        color: 'Info',
-                    })
-                }
+        async deleteLink(link) {
+            let shortHash = link.split('/')[link.split('/').length - 1]
+            const res = await linkService.deleteLink(shortHash)
+            if (res === 200) {
+                this.$vs.notify({
+                    title: '移除（ Delete URL ）',
+                    text: `${this.link.short_link} 已移除`,
+                    color: 'Info',
+                })
+                const idx = this.links.findIndex(ele => ele.short_link === link)
+                this.links.splice(idx, 1)
+            } else {
+                this.$vs.notify({
+                    title: '錯誤（ Wrong ）',
+                    text: `無法移除 😢 請通知作者`,
+                    color: 'danger',
+                })
+                console.error('Fail to delete this link')
             }
+        },
+        toggleModal(flag) {
+            if (flag === 'show') console.log('asdkjh')
+            // else this.$modal.hide('my-first-modal')
         },
     },
 }
@@ -121,9 +168,21 @@ export default {
     margin-bottom: 15px;
 }
 
+.con-vs-card {
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+}
+
 #LinkDetailText {
     margin-top: 17px;
-    /* margin-left: -2em; */
     color: var(--grey);
+}
+
+#LinkDeleteBtn {
+    padding-top: 4em;
+}
+
+#modalContext {
+    margin: 1em 0em 1em 0em;
 }
 </style>
