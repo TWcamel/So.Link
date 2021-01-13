@@ -8,12 +8,7 @@
 </template>
 
 <script>
-import ModalWindow from "@vuesence/modal-window";
 export default {
-    name: 'App',
-    mounted() {
-        document.title = 'So . Link 縮 網 址'
-    },
 }
 </script>
 

@@ -3,9 +3,9 @@
         <div slot="title">
             <vs-navbar-title> So . Link 縮 網 址 </vs-navbar-title>
         </div>
-        <vs-navbar-item index="1" style="color: var(--white)"><a id="navBtn" href="#">Home</a></vs-navbar-item>
+        <!-- <vs-navbar-item index="1" style="color: var(--white)"><a id="navBtn" href="#">Home</a></vs-navbar-item>
         <vs-navbar-item index="2" style="color: var(--white)"><a id="navBtn" href="#">News</a></vs-navbar-item>
-        <vs-navbar-item index="3" style="color: var(--white)"><a id="navBtn" href="#">Update</a></vs-navbar-item>
+        <vs-navbar-item index="3" style="color: var(--white)"><a id="navBtn" href="#">Update</a></vs-navbar-item> -->
         <vs-navbar-item style="color: var(--white)"><loggin-in /></vs-navbar-item>
     </vs-navbar>
 </template>

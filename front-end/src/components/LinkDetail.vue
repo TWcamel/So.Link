@@ -144,6 +144,7 @@ export default {
                 })
                 const idx = this.links.findIndex(ele => ele.short_link === link)
                 this.links.splice(idx, 1)
+                this.showModal = false
             } else {
                 this.$vs.notify({
                     title: '錯誤（ Wrong ）',
@@ -152,10 +153,6 @@ export default {
                 })
                 console.error('Fail to delete this link')
             }
-        },
-        toggleModal(flag) {
-            if (flag === 'show') console.log('asdkjh')
-            // else this.$modal.hide('my-first-modal')
         },
     },
 }
