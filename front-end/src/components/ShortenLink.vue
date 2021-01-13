@@ -1,10 +1,5 @@
 <template>
-    <vs-row
-        vs-justify="center"
-        vs-align="center"
-        vs-w="12"
-        id="inputBox"
-    >
+    <vs-row vs-justify="center" vs-align="center" vs-w="12" id="inputBox">
         <vs-row vs-justify="center" vs-align="flex-end" id="linkText">
             <vs-input
                 type="text"
@@ -17,6 +12,7 @@
             <vs-button
                 type="relief"
                 @click.prevent="regxLink(userLink, userIdentity)"
+                id="shortenBtn"
             >
                 <span class="material-icons">
                     post_add
@@ -31,9 +27,7 @@
                 label-placeholder="您的短網址"
                 v-model="userShortSequence"
             />
-            <vs-button
-                type="relief"
-                @click.prevent="copyText"
+            <vs-button type="relief" @click.prevent="copyText"
                 ><span class="material-icons">
                     content_paste
                 </span></vs-button
@@ -49,6 +43,7 @@
 <script>
 import linkService from '@/services/linkService.js'
 export default {
+    props: ['links'],
     async mounted() {
         const token = await linkService.getToken()
         if (token) this.userIdentity = 'user'
@@ -99,6 +94,12 @@ export default {
                         userIdentity
                     )
                     this.userShortSequence = link
+                    if (userIdentity == 'user') {
+                        this.links.push({
+                            long_link: userLink,
+                            short_link: link,
+                        })
+                    }
                     this.$vs.notify({
                         title: '成功縮網址（ Success ）',
                         text: `${link}`,
@@ -106,7 +107,11 @@ export default {
                     })
                 }
             } catch (e) {
-                this.$awn.alert(`${e}`)
+                this.$vs.notify({
+                    title: '錯誤（ Wrong ）',
+                    text: `${e}`,
+                    color: 'danger',
+                })
             }
         },
         clearInputBlock() {
@@ -180,10 +185,14 @@ export default {
 }
 
 .vuesax-app-is-ltr .vs-input--icon {
-    padding-right: 0.5em;
+    /* padding-right: 0.5em; */
 }
 
 .vs-button-relief {
     padding: 5px;
+}
+
+.material-icons {
+    font-size: 30px;
 }
 </style>

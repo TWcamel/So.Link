@@ -2,15 +2,11 @@
     <vs-row>
         <vs-row id="UserPage-block"> </vs-row>
         <vs-row>
-            <shorten-link />
+            <shorten-link :links="links" />
         </vs-row>
         <vs-row vs-justify="center" vs-align="center" class="UserPage-item">
             <h2 id="UserPage-block">使用者資訊</h2>
-            <vs-col
-                style="width:70%;"
-                v-for="link in links"
-                :key="link.id"
-            >
+            <vs-col style="width:70%;" v-for="link in links" :key="link.id">
                 <link-detail
                     :link="link"
                     @on-result-change="updateLinks()"
@@ -35,7 +31,6 @@ export default {
     methods: {
         async updateLinks() {
             const links = await linkService.getLinks()
-            console.log(links)
             if (links.length !== 0) {
                 links.forEach(link => {
                     link.short_link = `${config.linkBaseUrl}/${link.short_hash}`
@@ -46,7 +41,6 @@ export default {
     },
     async created() {
         await this.updateLinks()
-        // document.getElementById('shortenBtn').onclick = await this.updateLinks
     },
 }
 </script>
