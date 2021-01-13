@@ -44,8 +44,4 @@ export default {
     color: #2c3e50;
 }
 
-
-.material-icons {
-    font-size: 30px;
-}
 </style>

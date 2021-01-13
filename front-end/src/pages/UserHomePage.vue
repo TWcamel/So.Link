@@ -4,15 +4,15 @@
         <vs-row>
             <shorten-link :links="links" />
         </vs-row>
-        <vs-row vs-justify="center" vs-align="center" class="UserPage-item">
+        <vs-row vs-justify="space-around" vs-align="center" class="UserPage-item">
             <h2 id="UserPage-block">使用者資訊</h2>
-            <vs-col style="width:70%;" v-for="link in links" :key="link.id">
+            <vs-row vs-w="5" v-for="link in links" :key="link.id">
                 <link-detail
                     :link="link"
                     @on-result-change="updateLinks()"
                     :messages="copyStatus"
                 />
-            </vs-col>
+            </vs-row>
         </vs-row>
     </vs-row>
 </template>
