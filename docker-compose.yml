@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mongo-service:
+    container_name: mongo-service
+    image: mongo:latest
+    build: ./docker
+    volumes:
+      - mongodbdata:/data/db
+    ports:
+      - 27017:27017
+  web-service:
+    container_name: solink-node-app
+    build: .
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo-service
+volumes:
+  mongodbdata:
