@@ -28,11 +28,6 @@ export const router = new Router({
                         name: 'landing-page',
                         component: LandingPage,
                     },
-                    // {
-                    //     path: '/userinfo',
-                    //     name: 'user-info',
-                    //     component: UserInfo
-                    // },
                 ]
             },
             {

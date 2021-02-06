@@ -8,8 +8,7 @@
 </template>
 
 <script>
-export default {
-}
+export default {}
 </script>
 
 <style>
@@ -39,5 +38,4 @@ export default {
     text-align: center;
     color: #2c3e50;
 }
-
 </style>

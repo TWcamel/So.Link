@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import GAuth from 'vue-google-oauth2'
 import Vuesax from 'vuesax'
 import VueCliperboard from 'vue-clipboard2'
-// import VueScrollTo  from 'vue-scrollto';
 
 import config from '@/config.js';
 import 'vuesax/dist/vuesax.css'
@@ -19,7 +18,6 @@ Vue.use(VueRouter)
 Vue.use(GAuth, gauthoption)
 Vue.use(Vuesax)
 Vue.use(VueCliperboard)
-// Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false
 

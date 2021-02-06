@@ -20,10 +20,6 @@
                 <h2 id="UserHome-block" class="UserHome-item">聯絡資訊</h2>
             </vs-row>
             <vs-row id="UserHome-block" vs-justify="center" vs-align="center">
-                <!-- <vs-avatar
-                    size="100px"
-                    src="https://avatars0.githubusercontent.com/u/19822513?s=460&u=55d1398ce141efe5583c5ead2a9187f0a8bba290&v=4"
-                /> -->
                 <vs-avatar
                     v-for="(contact, idx) in contacts"
                     :key="idx"
