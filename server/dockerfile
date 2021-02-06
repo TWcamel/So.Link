@@ -5,9 +5,9 @@ LABEL description="So . Link"
 
 WORKDIR /usr/src/app
 
-COPY ./server/package*.json ./
+COPY ./package*.json ./
 RUN npm cache clean --force && npm install
 COPY . .
 
 EXPOSE 3001
-CMD [ "npm", "run", "start" ]
+CMD [ "node", "run", "start" ]

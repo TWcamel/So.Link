@@ -3,18 +3,25 @@ version: "3"
 services:
   mongo-service:
     container_name: mongo-service
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootPasXw0rd
     image: mongo:latest
-    build: ./docker
     volumes:
-      - mongodbdata:/data/db
+      - mongodb-data:/data/db
+    restart: on-failure
     ports:
       - 27017:27017
+    command:
+      - mongod
   web-service:
     container_name: solink-node-app
     build: .
+    environment:
+      - DATABASE_HOST=db
     ports:
       - 3001:3001
     depends_on:
       - mongo-service
 volumes:
-  mongodbdata:
+  mongodb-data:
