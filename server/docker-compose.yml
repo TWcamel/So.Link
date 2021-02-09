@@ -5,7 +5,7 @@ services:
     container_name: mongo-service
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=rootPasXw0rd
+      - MONGO_INITDB_ROOT_PASSWORD=password
     image: mongo:latest
     volumes:
       - mongodb-data:/data/db
@@ -15,13 +15,18 @@ services:
     command:
       - mongod
   web-service:
-    container_name: solink-node-app
-    build: .
-    environment:
-      - DATABASE_HOST=db
+    container_name: solink-web-service-app
+    build: 
+      context: .
+      dockerfile: ./dockerfile
+    command: node app.js
+    # environment:
+    #   - DATABASE_HOST=db
     ports:
       - 3001:3001
     depends_on:
       - mongo-service
+    volumes:
+      - ./:/usr/src/app
 volumes:
   mongodb-data:
