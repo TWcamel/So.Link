@@ -19,6 +19,6 @@
     "koa2-history-api-fallback": "^0.1.0",
     "md5": "^2.2.1",
     "mongodb": "^3.5.9",
-    "redis": "^3.0.2"
+    "redis": "^3.1.1"
   }
 }
